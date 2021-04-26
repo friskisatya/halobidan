@@ -29,9 +29,9 @@
             <h5><i class="fas fa-user mr-3"></i><?= $this->session->userdata("nama")?></h5>
           <?php }?>
         </div>
-        <div class="mt-3 static-top mobile-dash float-right">
+        <!-- <div class="mt-3 static-top mobile-dash float-right">
           <h5 id="loc"><i class='fas fa-map-marker-alt mr-1'></i></h5>
-        </div>
+        </div> -->
     </nav>
     <div style="padding-top:70px;padding-bottom:100px;">
         <?= $contents?>
@@ -73,7 +73,7 @@
     <!-- Black Dashboard DEMO methods, don't include it in your project! -->
     <script src="<?= base_url()?>/assets/demo/demo.js"></script>
 
-    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
+    <!-- <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
       type="text/javascript" charset="utf-8"></script>
     <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
       type="text/javascript" charset="utf-8"></script>
@@ -105,7 +105,7 @@
           } else {
               console.error("Geolocation is not supported by this browser!");
           }
-      </script>
+      </script> -->
 
     
 </body>
