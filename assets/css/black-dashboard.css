@@ -20453,6 +20453,13 @@ Copyright (c) 2015 Daniel Eden
   flex: 0 0 20%;
   max-width: 20%;
 }
+.reactive-mobile-nonbreak{
+  word-wrap:normal;
+  padding: 0px;
+  padding-right: 0px;
+  flex: 0 0 20%;
+  max-width: 20%;
+}
 .card-body-mobile{
   color: #525f7f;
   padding : 10px;

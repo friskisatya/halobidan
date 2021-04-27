@@ -38,19 +38,19 @@
     </div>
     <nav class="navbar fixed-bottom navbar-light justify-content-center" style="color:#fff;">
       <div class="row">
-        <button class="btn btn-success btn-sm col-2">
+        <button class="btn btn-success btn-sm col-3">
           <i class="fas fa-home"></i></i> <span class="reactive-mobile"><sub>Beranda</sub></span>
         </button>
-        <button class="btn btn-primary btn-sm col-2">
-          <i class="fas fa-diagnoses"></i></i> <span class="reactive-mobile"><sub>Info Kehamilan</sub></span>
+        <button class="btn btn-primary btn-sm col-3">
+          <i class="fas fa-diagnoses"></i></i> <span class="reactive-mobile"><sub>Profile Kehamilan</sub></span>
         </button>
-        <button class="btn btn-primary btn-sm col-2">
+        <!-- <button class="btn btn-primary btn-sm col-2">
           <i class="fas fa-stethoscope"></i></i> <span class="reactive-mobile"><sub>Layanan Kesehatan</sub></span>
-        </button>
-        <button class="btn btn-primary btn-sm col-2">
+        </button> -->
+        <!-- <button class="btn btn-primary btn-sm col-2">
           <i class="fas fa-question"></i></i> <span class="reactive-mobile"><sub>FAQ</sub></span>
-        </button>
-        <button class="btn btn-primary btn-sm col-2">
+        </button> -->
+        <button class="btn btn-primary btn-sm col-3">
           <i class="fas fa-info"></i></i> <span class="reactive-mobile"><sub>Tentang</sub></span>
         </button>
       </div>
