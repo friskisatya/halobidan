@@ -3,96 +3,57 @@
     <p>Nikmati Kemudahan berkonsultasi dengan bidan yang berpengalaman</p>
     <div class="table-responsive">
         <table class="table table-shopping">
+            <?php
+            foreach($rs_klinik as $klinik){
+            ?>
             <thead>
                 <tr>
-                    <th class="text-left" colspan="3">Klink/Rumah Sakit : Mitra Parahyangan</th>
+                    <th class="text-left" colspan="3">Klink/Rumah Sakit : <?=$klinik->nama_klinik?></th>
                 </tr>
             </thead>
             <tbody>
+                <?php
+                $query_anggota = $this->db->query("
+                    SELECT 
+                        tb.id_bidan,
+                        tb.nama_bidan,
+                        tb.mulai_bekerja,
+                        tb.img_profile  
+                    FROM 
+                        t_klinik_anggota tka,
+                        t_bidan tb 
+                    WHERE 
+                        tka.id_klinik = '$klinik->id_klinik'
+                        AND tka.id_bidan = tb.id_bidan
+                ")->result();
+
+                foreach($query_anggota as $bidan){
+                    $awal  = date_create($bidan->mulai_bekerja);
+                    $akhir = date_create(); // waktu sekarang
+                    $diff  = date_diff( $awal, $akhir );
+                ?>
                 <tr>
                     <td>
                         <div class="img-container">
                             <div class="card bg-dark text-white">
-                                <img class="card-img" src="<?= base_url()?>/assets/img/12345.png" alt="bidan"
+                                <img class="card-img" src="<?= base_url()?>/assets/img/<?=$bidan->img_profile?>" alt="bidan"
                                     style="width: 15rem;">
                                 <div class="card-img-overlay d-flex h-10 flex-column justify-content-end p-0">
-                                    <h5 class="card-title text-center btn-warning">1 Tahun</h5>
+                                    <h5 class="card-title text-center btn-warning"><?= $diff->y?> Tahun</h5>
                                 </div>
                             </div>
                         </div>
                     </td>
                     <td>
-                        <p class="text-center text-capitalize">Asqiah Faddilah Amd.Keb</p>
+                        <p class="text-center text-capitalize"><?=$bidan->nama_bidan?></p>
                     </td>
                     <td>
                         <button class="btn-xm btn-primary">Chat</button>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <div class="img-container">
-                            <div class="card bg-dark text-white">
-                                <img class="card-img" src="<?= base_url()?>/assets/img/anime3.png" alt="bidan"
-                                    style="width: 15rem;">
-                                <div class="card-img-overlay d-flex h-10 flex-column justify-content-end p-0">
-                                    <h5 class="card-title text-center btn-warning">8 Tahun</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p class="text-center text-capitalize">Arnetta Oktavia Haerani Amd.Keb</p>
-                    </td>
-                    <td>
-                        <button class="btn-xm btn-primary">Chat</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="img-container">
-                            <div class="card bg-dark text-white">
-                                <img class="card-img" src="<?= base_url()?>/assets/img/anime6.png" alt="bidan"
-                                    style="width: 15rem;">
-                                <div class="card-img-overlay d-flex h-10 flex-column justify-content-end p-0">
-                                    <h5 class="card-title text-center btn-warning">4 Tahun</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p class="text-center text-capitalize">Indri Aprilia Astria Amd.Keb</p>
-                    </td>
-                    <td>
-                        <button class="btn-xm btn-primary">Chat</button>
-                    </td>
-                </tr>
+                <?php } ?>
             </tbody>
-            <thead>
-                <tr>
-                    <th class="text-left" colspan="3">Klink/Rumah Sakit : Kawaluyaan</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <div class="img-container">
-                            <div class="card bg-dark text-white">
-                                <img class="card-img" src="<?= base_url()?>/assets/img/mike.jpg" alt="bidan"
-                                    style="width: 15rem;">
-                                <div class="card-img-overlay d-flex h-10 flex-column justify-content-end p-0">
-                                    <h5 class="card-title text-center btn-warning">2 Tahun</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p class="text-center text-capitalize">Seny Rizky Amalia Putri Amd.Keb</p>
-                    </td>
-                    <td>
-                        <button class="btn-xm btn-primary">Chat</button>
-                    </td>
-                </tr>
-            </tbody>
+            <?php } ?>
         </table>
     </div>
 </div>

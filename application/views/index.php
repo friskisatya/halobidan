@@ -1,7 +1,7 @@
 <div class="container-fluid">
 <h4 class="title"><i class="fas fa-columns"></i>&nbsp Layanan</h4>
     <div class="row text-center flex-nowrap" style="overflow: auto;">
-        <div class="btn btn-sm col-4 m-1">
+        <div class="btn btn-sm col-4 m-1" onclick="window.location='<?=base_url('C_index/chat_bidan')?>'">
             <div class="card-wrapper">
             <img class="card-img-top rounded mx-auto d-block mt-1" src="<?= base_url()?>/assets/img/consulting.png" alt="Card image cap" style ="width : 3rem ; height : 3rem;">
                 <div class="card-body p-1">
