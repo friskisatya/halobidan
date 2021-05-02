@@ -8,7 +8,7 @@
     <p class="card-title"><i class="fas fa-info-circle"></i>&nbsp informasi klinik ini</p>
     
     <div class="card">
-        <img class="card-img-top" src="<?= base_url()?>/assets/img/img_klinik.jpg" alt="Card image cap">
+        <img class="card-img-top" src="<?= base_url()?>assets/img/IMG_klinik.jpg" alt="Card image cap">
         <div class="card-body">
             <h4 class="card-title text-center">Tentang</h4>
             <p class="card-text text-justify"><?=$klinik->tentang?></p>
