@@ -1,5 +1,5 @@
 <div class="container">
-    <h6 class="title float-right btn-sm btn-primary"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
+    <h6 class="title float-right btn-sm btn-primary" onclick="window.history.back();"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
     <h4 class="title"><i class="fas fa-user"></i>&nbsp Profile Ibu Hamil</h4>
     <div class="card-user card">
         <div class="card-body">

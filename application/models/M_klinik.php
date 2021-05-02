@@ -8,4 +8,11 @@ class M_klinik extends CI_Model {
 		return $this->db->get('t_klinik')->result();
 	}
 
+	public function getAllKlinikById($id_klinik)
+	{
+		$data = array('id_klinik'=>$id_klinik);
+		$this->db->where($data);
+		return $this->db->get('t_klinik')->result();
+	}
+
 }

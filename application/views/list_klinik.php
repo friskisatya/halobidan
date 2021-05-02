@@ -7,42 +7,21 @@
 
             </thead>
             <tbody>
+                <?php
+                foreach($rs_klinik as $klinik){
+                ?>
                 <tr>
                     <td>
-                        <p class="text-center text-capitalize">Klink Mitra Parahyangan</p>
+                        <p class="text-center text-capitalize"><?=$klinik->nama_klinik?></p>
                     </td>
                     <td>
-                        <p class="text-center text-capitalize">Jl. Prof. Eyckman No.28, Pasteur, Kec. Sukajadi, Kota
-                            Bandung, Jawa Barat 40161, Indonesia</p>
+                        <p class="text-center text-capitalize"><?=$klinik->alamat_klinik?></p>
                     </td>
                     <td>
-                        <button class="btn btn-primary">Detail Klinik</button>
+                        <a href="<?=base_url("C_index/detail_klinik/").$klinik->id_klinik?>"><button class="btn btn-primary">Detail Klinik</button></a>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <p class="text-center text-capitalize">Klink Kemayoran</p>
-                    </td>
-                    <td>
-                        <p class="text-center text-capitalize">Jl. Garuda No.26 B, RT.1/RW.2, Kemayoran, Kec. Kemayoran,
-                            Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10620, Indonesia</p>
-                    </td>
-                    <td>
-                        <button class="btn btn-primary">Detail Klinik</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p class="text-center text-capitalize">Klink Sunter</p>
-                    </td>
-                    <td>
-                        <p class="text-center text-capitalize">Jln Mitra Sunter Blvd No.41, RT.15/RW.8, Sunter Jaya,
-                            Tanjung Priok, North Jakarta City, Jakarta 14350, Indonesia</p>
-                    </td>
-                    <td>
-                        <button class="btn btn-primary">Detail Klinik</button>
-                    </td>
-                </tr>
+                <?php } ?>
             </tbody>
         </table>
     </div>

@@ -21,6 +21,7 @@
 </head>
 
 <body class="">
+    <?php $segment = $this->uri->segment(1);?>
     <nav class="navbar fixed-top navbar-light" style="color:#fff;">
         <div class="mt-3 col-6 static-top mobile-dash float-left">
           <?php if($this->session->userdata('nama')==""){?>
@@ -38,21 +39,21 @@
     </div>
     <nav class="navbar fixed-bottom navbar-light justify-content-center" style="color:#fff;">
       <div class="row">
-        <button class="btn btn-success btn-sm col-3">
+        <a class="btn btn-<?= $segment == "C_index"?"success":"primary" ?> btn-sm col-3" href="<?=base_url("C_index")?>">
           <i class="fas fa-home"></i></i> <span class="reactive-mobile"><sub>Beranda</sub></span>
-        </button>
-        <button class="btn btn-primary btn-sm col-3">
+        </a>
+        <a class="btn btn-<?= $segment == "C_profile_kehamilan"?"success":"primary" ?> btn-sm col-3" href="<?=base_url("C_profile_kehamilan")?>">
           <i class="fas fa-diagnoses"></i></i> <span class="reactive-mobile"><sub>Profile Kehamilan</sub></span>
-        </button>
+        </a>
         <!-- <button class="btn btn-primary btn-sm col-2">
           <i class="fas fa-stethoscope"></i></i> <span class="reactive-mobile"><sub>Layanan Kesehatan</sub></span>
         </button> -->
         <!-- <button class="btn btn-primary btn-sm col-2">
           <i class="fas fa-question"></i></i> <span class="reactive-mobile"><sub>FAQ</sub></span>
         </button> -->
-        <button class="btn btn-primary btn-sm col-3">
+        <a class="btn btn-<?= $segment == "C_tentang"?"success":"primary" ?> btn-sm col-3" href="<?=base_url("C_tentang")?>">
           <i class="fas fa-info"></i></i> <span class="reactive-mobile"><sub>Tentang</sub></span>
-        </button>
+        </a>
       </div>
     </nav>
     <!-- end navbar for mobile -->

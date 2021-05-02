@@ -23,4 +23,17 @@ class C_index extends CI_Controller {
         $data['rs_klinik'] = $this->M_klinik->getAllKlinik();
 		$this->template->load('static','chat_bidan',$data);
 	}
+
+    public function konsultasi_klinik()
+	{
+        //$data['rs_klinik'] = $this->M_klinik->getAllKlinik();
+        $data['rs_klinik'] = $this->M_klinik->getAllKlinik();
+		$this->template->load('static','list_klinik',$data);
+	}
+
+    public function detail_klinik($id_klinik)
+	{
+        $data['rs_klinik'] = $this->M_klinik->getAllKlinikById($id_klinik);
+		$this->template->load('static','detail_klinik',$data);
+	}
 }
