@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2021 at 03:15 PM
+-- Generation Time: May 02, 2021 at 08:14 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -48,6 +48,27 @@ INSERT INTO `t_bidan` (`id_bidan`, `nama_bidan`, `gelar`, `alamat_bidan`, `telp_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `t_fasilitas`
+--
+
+CREATE TABLE `t_fasilitas` (
+  `id_fasilitas` int(11) NOT NULL,
+  `nama_fasilitas` varchar(2000) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_fasilitas`
+--
+
+INSERT INTO `t_fasilitas` (`id_fasilitas`, `nama_fasilitas`, `status`) VALUES
+(1, 'Tempat Tidur', 0),
+(2, 'Ruang Inkubator', 0),
+(3, 'Ruang Tunggu Pasien', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `t_klinik`
 --
 
@@ -57,6 +78,7 @@ CREATE TABLE `t_klinik` (
   `alamat_klinik` varchar(2000) NOT NULL,
   `telp_klinik` varchar(2000) NOT NULL,
   `keterangan` varchar(2000) NOT NULL,
+  `tentang` varchar(5000) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -64,9 +86,9 @@ CREATE TABLE `t_klinik` (
 -- Dumping data for table `t_klinik`
 --
 
-INSERT INTO `t_klinik` (`id_klinik`, `nama_klinik`, `alamat_klinik`, `telp_klinik`, `keterangan`, `status`) VALUES
-(1, 'Mitra Parahiyangan', 'Parahiyangan', '123123123', 'Tes', 0),
-(2, 'Kawaluyaan', 'Kawaluyaan', '123123123', 'Test', 0);
+INSERT INTO `t_klinik` (`id_klinik`, `nama_klinik`, `alamat_klinik`, `telp_klinik`, `keterangan`, `tentang`, `status`) VALUES
+(1, 'Klinik Mitra Parahiyangan', 'Jl. Prof. Eyckman No.28, Pasteur, Kec. Sukajadi, Kota\r\n                            Bandung, Jawa Barat 40161, Indonesia', '123123123', 'Tes', 'Klinik Pratama Kemayoran hadir di pusat ibukota Jakarta sejak tahun 2012.                 Dengan mengusung konsep “one stop service clinic”, Klinik Kemayoran menawarkan perawatan lengkap dari                 ujung rambut sampai ujung kaki. Selain itu, klinik kemayoran juga didukung oleh tenaga medis dan staff                 yang bersertifikasi, serta alat-alat dan obat-obatan yang aman.', 0),
+(2, 'Klink Kemayoran', 'Jl. Garuda No.26 B, RT.1/RW.2, Kemayoran, Kec. Kemayoran,\r\n                            Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10620, Indonesia', '123123123', 'Test', '', 0);
 
 -- --------------------------------------------------------
 
@@ -89,6 +111,28 @@ INSERT INTO `t_klinik_anggota` (`id_klinik_anggota`, `id_klinik`, `id_bidan`, `s
 (1, 1, 1, 0),
 (2, 1, 2, 0),
 (4, 2, 2, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_klinik_fasilitas`
+--
+
+CREATE TABLE `t_klinik_fasilitas` (
+  `id_klinik_fasilitas` int(11) NOT NULL,
+  `id_klinik` int(11) NOT NULL,
+  `id_fasilitas` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_klinik_fasilitas`
+--
+
+INSERT INTO `t_klinik_fasilitas` (`id_klinik_fasilitas`, `id_klinik`, `id_fasilitas`, `status`) VALUES
+(1, 1, 1, 0),
+(2, 1, 2, 0),
+(3, 1, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -127,6 +171,12 @@ ALTER TABLE `t_bidan`
   ADD PRIMARY KEY (`id_bidan`);
 
 --
+-- Indexes for table `t_fasilitas`
+--
+ALTER TABLE `t_fasilitas`
+  ADD PRIMARY KEY (`id_fasilitas`);
+
+--
 -- Indexes for table `t_klinik`
 --
 ALTER TABLE `t_klinik`
@@ -137,6 +187,12 @@ ALTER TABLE `t_klinik`
 --
 ALTER TABLE `t_klinik_anggota`
   ADD PRIMARY KEY (`id_klinik_anggota`);
+
+--
+-- Indexes for table `t_klinik_fasilitas`
+--
+ALTER TABLE `t_klinik_fasilitas`
+  ADD PRIMARY KEY (`id_klinik_fasilitas`);
 
 --
 -- Indexes for table `t_login`
@@ -155,6 +211,12 @@ ALTER TABLE `t_bidan`
   MODIFY `id_bidan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `t_fasilitas`
+--
+ALTER TABLE `t_fasilitas`
+  MODIFY `id_fasilitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `t_klinik`
 --
 ALTER TABLE `t_klinik`
@@ -165,6 +227,12 @@ ALTER TABLE `t_klinik`
 --
 ALTER TABLE `t_klinik_anggota`
   MODIFY `id_klinik_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `t_klinik_fasilitas`
+--
+ALTER TABLE `t_klinik_fasilitas`
+  MODIFY `id_klinik_fasilitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `t_login`
