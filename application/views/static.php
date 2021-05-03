@@ -21,13 +21,16 @@
 </head>
 
 <body class="">
-    <?php $segment = $this->uri->segment(1);?>
+    <?php 
+      $segment = $this->uri->segment(1);
+      $status_admin = $this->session->userdata('status_admin');
+    ?>
     <nav class="navbar fixed-top navbar-light" style="color:#fff;">
         <div class="mt-3 col-6 static-top mobile-dash float-left">
           <?php if($this->session->userdata('nama')==""){?>
             <h5><i class="fas fa-user mr-3"></i><a href="<?= base_url('C_login')?>" class="btn-sm btn-primary">Daftar/Masuk</a></h5>
           <?php } else {?>
-            <h5><i class="fas fa-user mr-3"></i><?= $this->session->userdata("nama")?></h5>
+            <h5><i class="fas fa-user mr-3"></i><?= $this->session->userdata("nama")?>&nbsp;&nbsp;&nbsp;<a href="<?= base_url('C_login/logout')?>" class="btn-sm btn-primary"><i class="fa fa-power-off" aria-hidden="true"></i></a></h5>
           <?php }?>
         </div>
         <!-- <div class="mt-3 static-top mobile-dash float-right">
@@ -42,9 +45,19 @@
         <a class="btn btn-<?= $segment == "C_index"?"success":"primary" ?> btn-sm col-3" href="<?=base_url("C_index")?>">
           <i class="fas fa-home"></i></i> <span class="reactive-mobile"><sub>Beranda</sub></span>
         </a>
+        <?php
+        if($status_admin == "1"){
+        ?>
+        <a class="btn btn-<?= $segment == "C_administrasi_aplikasi"?"success":"primary" ?> btn-sm col-3" href="<?=base_url("C_administrasi_aplikasi")?>">
+          <i class="fas fa-diagnoses"></i></i> <span class="reactive-mobile"><sub>Admin Aplikasi</sub></span>
+        </a>
+        <?php
+        }else{
+        ?>
         <a class="btn btn-<?= $segment == "C_profile_kehamilan"?"success":"primary" ?> btn-sm col-3" href="<?=base_url("C_profile_kehamilan")?>">
           <i class="fas fa-diagnoses"></i></i> <span class="reactive-mobile"><sub>Profile Kehamilan</sub></span>
         </a>
+        <?php } ?>
         <!-- <button class="btn btn-primary btn-sm col-2">
           <i class="fas fa-stethoscope"></i></i> <span class="reactive-mobile"><sub>Layanan Kesehatan</sub></span>
         </button> -->

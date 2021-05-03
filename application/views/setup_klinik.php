@@ -1,5 +1,5 @@
 <div class="container">
-<h6 class="title float-right btn-sm btn-primary ml-1"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
+<h6 class="title float-right btn-sm btn-primary ml-1" onclick="window.history.back();"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
 <h6 class="title float-right btn-sm btn-primary"><i class="fas fa-plus"></i>&nbsp Tambah</h6>
 <h4 class="title"><i class="fas fa-columns"></i>&nbsp Setup Klinik</h4>
 <div class="table-responsive">

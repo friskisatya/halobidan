@@ -33,7 +33,7 @@ class C_login extends CI_Controller {
 			$this->session->set_userdata("email",$email);
 			$this->session->set_userdata("nama",$select["nama"]);
 			$this->session->set_userdata("location",$select["location"]);
-			
+			$this->session->set_userdata("status_admin",$select["status_admin"]);
 			redirect('C_index');
 		}
 		else
@@ -86,11 +86,11 @@ class C_login extends CI_Controller {
 		}	
 	}
 
-	// public function logout()
-	// {
-	// 	$this->session->sess_destroy();
-    //     redirect();
-	// }
+	public function logout()
+	{
+		$this->session->sess_destroy();
+        redirect();
+	}
 
 	// public function lupa_password()
 	// {
