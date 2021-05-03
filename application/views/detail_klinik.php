@@ -51,9 +51,9 @@
                 <a href="#" class="col">
                     <h4 class="btn btn-md btn-info">Telepon</h4>
                 </a>
-                <a href="#" class="col-auto">
+                <button  onclick="f_location()" class="col-auto">
                     <h4 class="btn btn-md btn-info">Petunjuk Arah</h4>
-                </a>
+                </button>
             </div>
         </div>
         <hr>
@@ -119,5 +119,15 @@
     </div>
     <?php } ?>
 </div>
-
+<script>
+function f_location(){
+    // If it's an iPhone..
+    if( (navigator.platform.indexOf("iPhone") != -1) 
+        || (navigator.platform.indexOf("iPod") != -1)
+        || (navigator.platform.indexOf("iPad") != -1))
+         window.open("maps://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=-6.876728708573167,107.57803210861529");
+    else
+         window.open("https://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=-6.876728708573167,107.57803210861529");
+}
+</script>
 <!-- end of article -->
