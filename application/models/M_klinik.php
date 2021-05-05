@@ -15,4 +15,30 @@ class M_klinik extends CI_Model {
 		return $this->db->get('t_klinik')->result();
 	}
 
+	public function create($data){
+		if($this->db->insert('t_klinik', $data)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function edit($data,$where){
+		$this->db->where($where);
+		if($this->db->update('t_klinik', $data)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function delete($where){
+		$this->db->where($where);
+		if($this->db->delete('t_klinik')){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 }
