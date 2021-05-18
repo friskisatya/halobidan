@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <div class="btn btn-sm col-4 m-1">
+        <div class="btn btn-sm col-4 m-1" onclick="window.location='<?=base_url('C_index/kalkulator_kehamilan')?>'">
             <div class="card-wrapper">
             <img class="card-img-top rounded mx-auto d-block mt-1" src="<?= base_url()?>/assets/img/calc.png" alt="Card image cap" style ="width : 3rem ; height : 3rem;">
                 <div class="card-body p-1">
