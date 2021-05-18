@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2021 at 02:49 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.34
+-- Generation Time: May 18, 2021 at 04:42 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_mobile`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_artikel`
+--
+
+CREATE TABLE `t_artikel` (
+  `id_artikel` int(11) NOT NULL,
+  `judul_artikel` varchar(255) NOT NULL,
+  `isi_artikel` text NOT NULL,
+  `status_artikel` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_artikel`
+--
+
+INSERT INTO `t_artikel` (`id_artikel`, `judul_artikel`, `isi_artikel`, `status_artikel`) VALUES
+(2, 'tes', 'tes', 1);
 
 -- --------------------------------------------------------
 
@@ -44,6 +64,26 @@ CREATE TABLE `t_bidan` (
 INSERT INTO `t_bidan` (`id_bidan`, `nama_bidan`, `gelar`, `alamat_bidan`, `telp_bidan`, `mulai_bekerja`, `img_profile`) VALUES
 (1, 'Friski satya nugraha', 'Amd.Keb', 'Jakarta', '123123123', '2020-01-01', '12345.png'),
 (2, 'Deny', 'Amd.Kom', 'Cimahi', '123123123', '2018-01-01', 'mike.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_faq`
+--
+
+CREATE TABLE `t_faq` (
+  `id_faq` int(11) NOT NULL,
+  `ask` text NOT NULL,
+  `question` text NOT NULL,
+  `status_faq` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_faq`
+--
+
+INSERT INTO `t_faq` (`id_faq`, `ask`, `question`, `status_faq`) VALUES
+(1, '1231', '122', 0);
 
 -- --------------------------------------------------------
 
@@ -87,7 +127,6 @@ CREATE TABLE `t_klinik` (
 --
 
 INSERT INTO `t_klinik` (`id_klinik`, `nama_klinik`, `alamat_klinik`, `telp_klinik`, `keterangan`, `tentang`, `status`) VALUES
-(1, 'Klinik Mitra Parahiyangan', 'Jl. Prof. Eyckman No.28, Pasteur, Kec. Sukajadi, Kota\r\n                            Bandung, Jawa Barat 40161, Indonesia', '123123123', 'Tes', 'Klinik Pratama Kemayoran hadir di pusat ibukota Jakarta sejak tahun 2012.                 Dengan mengusung konsep “one stop service clinic”, Klinik Kemayoran menawarkan perawatan lengkap dari                 ujung rambut sampai ujung kaki. Selain itu, klinik kemayoran juga didukung oleh tenaga medis dan staff                 yang bersertifikasi, serta alat-alat dan obat-obatan yang aman.', 0),
 (2, 'Klink Kemayoran', 'Jl. Garuda No.26 B, RT.1/RW.2, Kemayoran, Kec. Kemayoran,\r\n                            Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10620, Indonesia', '123123123', 'Test', '', 0);
 
 -- --------------------------------------------------------
@@ -166,10 +205,22 @@ INSERT INTO `t_login` (`id`, `nama`, `alamat`, `no_telp`, `email`, `password`, `
 --
 
 --
+-- Indexes for table `t_artikel`
+--
+ALTER TABLE `t_artikel`
+  ADD PRIMARY KEY (`id_artikel`);
+
+--
 -- Indexes for table `t_bidan`
 --
 ALTER TABLE `t_bidan`
   ADD PRIMARY KEY (`id_bidan`);
+
+--
+-- Indexes for table `t_faq`
+--
+ALTER TABLE `t_faq`
+  ADD PRIMARY KEY (`id_faq`);
 
 --
 -- Indexes for table `t_fasilitas`
@@ -206,22 +257,34 @@ ALTER TABLE `t_login`
 --
 
 --
+-- AUTO_INCREMENT for table `t_artikel`
+--
+ALTER TABLE `t_artikel`
+  MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `t_bidan`
 --
 ALTER TABLE `t_bidan`
-  MODIFY `id_bidan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_bidan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `t_faq`
+--
+ALTER TABLE `t_faq`
+  MODIFY `id_faq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `t_fasilitas`
 --
 ALTER TABLE `t_fasilitas`
-  MODIFY `id_fasilitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_fasilitas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `t_klinik`
 --
 ALTER TABLE `t_klinik`
-  MODIFY `id_klinik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_klinik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `t_klinik_anggota`
