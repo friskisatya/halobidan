@@ -19,6 +19,10 @@ class C_login extends CI_Controller {
 	{
 		$this->load->view('login');
 	}
+	public function index_web()
+	{
+		$this->load->view('login_web');
+	}
 
 
 	public function auth()
@@ -46,6 +50,11 @@ class C_login extends CI_Controller {
 	public function daftar()
 	{
 		$this->load->view('daftar');
+	}
+
+	public function daftar_web()
+	{
+		$this->load->view('daftar_web');
 	}
 
 	public function post_daftar()

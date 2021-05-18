@@ -14,7 +14,12 @@ class C_index extends CI_Controller {
 
 	public function index()
 	{
-		$this->template->load('static','index');
+        $this->template->load('static','index');
+	}
+    
+    public function index_web()
+	{
+        $this->template->load('static_web','index_web');
 	}
 
     public function chat_bidan()
