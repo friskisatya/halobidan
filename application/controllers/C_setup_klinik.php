@@ -21,10 +21,19 @@ class C_setup_klinik extends CI_Controller {
         $data["rs_klinik"] = $this->M_klinik->getAllKlinik();
 		$this->template->load('static','setup_klinik',$data);
 	}
+    public function index_web()
+	{
+        $data["rs_klinik"] = $this->M_klinik->getAllKlinik();
+		$this->template->load('static_web','setup_klinik_web',$data);
+	}
 
     public function create()
 	{
 		$this->template->load('static','C_klinik');
+	}
+    public function create_web()
+	{
+		$this->template->load('static_web','C_klinik_web');
 	}
 
     public function edit($id)
@@ -32,6 +41,12 @@ class C_setup_klinik extends CI_Controller {
         $data["id"]=$id;
         $data["rs_klinik"] = $this->M_klinik->getAllKlinikById($id);
 		$this->template->load('static','U_klinik',$data);
+	}
+    public function edit_web($id)
+	{
+        $data["id"]=$id;
+        $data["rs_klinik"] = $this->M_klinik->getAllKlinikById($id);
+		$this->template->load('static_web','U_klinik_web',$data);
 	}
 
     public function post_create()
@@ -50,6 +65,23 @@ class C_setup_klinik extends CI_Controller {
             $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='red'>Data tidak Berhasil disimpan</font></span>");
         }
         redirect("C_setup_klinik/create");
+	}
+    public function post_create_web()
+	{
+        $data = array(
+            'nama_klinik'   =>$this->input->post('nama_klinik'),
+            'alamat_klinik' =>$this->input->post('alamat_klinik'),
+            'telp_klinik'   =>$this->input->post('telp_klinik'),
+            'tentang'       =>$this->input->post('tentang'),
+            'status'        =>$this->input->post('status'),
+        );
+        $create = $this->M_klinik->create($data);
+        if($create){
+            $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Disimpan</font></span>");
+        }else{
+            $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='red'>Data tidak Berhasil disimpan</font></span>");
+        }
+        redirect("C_setup_klinik/index_web");
 	}
 
     public function post_edit($id)
@@ -71,6 +103,25 @@ class C_setup_klinik extends CI_Controller {
 
         redirect("C_setup_klinik/edit/".$id);
 	}
+    public function post_edit_web($id)
+	{
+        $where = array('id_klinik'=>$id);
+        $data = array(
+            'nama_klinik'   =>$this->input->post('nama_klinik'),
+            'alamat_klinik' =>$this->input->post('alamat_klinik'),
+            'telp_klinik'   =>$this->input->post('telp_klinik'),
+            'tentang'       =>$this->input->post('tentang'),
+            'status'        =>$this->input->post('status'),
+        );
+        $edit = $this->M_klinik->edit($data,$where);
+        if($edit){
+            $this->session->set_userdata("notif_edit","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Disimpan</font></span>");
+        }else{
+            $this->session->set_userdata("notif_edit","<span class='login100-form-title-1'><font size='3px' color='red'>Data tidak Berhasil disimpan</font></span>");
+        }
+
+        redirect("C_setup_klinik/edit_web/".$id);
+	}
 
     public function delete($id)
 	{
@@ -84,5 +135,18 @@ class C_setup_klinik extends CI_Controller {
         }
 
         redirect("C_setup_klinik");
+	}
+    public function delete_web($id)
+	{
+        $where = array('id_klinik'=>$id);
+        
+        $delete = $this->M_klinik->delete($where);
+        if($delete){
+            $this->session->set_userdata("notif_delete","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Dihapus</font></span>");
+        }else{
+            $this->session->set_userdata("notif_delete","<span class='login100-form-title-1'><font size='3px' color='red'>Data tidak Berhasil Dihapus</font></span>");
+        }
+
+        redirect("C_setup_klinik/index_web");
 	}
 }

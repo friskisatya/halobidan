@@ -36,6 +36,22 @@
           <a class="nav-link" href="#">Beranda<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
+        <div class="dropdown">
+  <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Admin Aplikasi
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="<?=base_url()?>/C_setup_klinik/index_web">Setup Klinik</a>
+    <a class="dropdown-item" href="<?=base_url()?>/C_setup_fasilitas/index_web">Setup Fasilitas Klinik</a>
+    <a class="dropdown-item" href="<?=base_url()?>/C_setup_bidan/index_web">Setup Tenaga Kerja (Bidan)</a>
+    <a class="dropdown-item" href="<?=base_url()?>/C_setup_artikel/index_web">Setup Artikel</a>
+    <a class="dropdown-item" href="<?=base_url()?>/C_setup_faq/index_web">Setup FAQ</a>
+    <a class="dropdown-item" href="#">Setup Tentang Aplikasi</a>
+  </div>
+</div>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="<?=base_url()?>#layanan">layanan</a>
         </li>
         <li class="nav-item">

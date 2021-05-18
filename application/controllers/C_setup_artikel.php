@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
  
-class C_setup_fasilitas extends CI_Controller {
+class C_setup_artikel extends CI_Controller {
 
 	function __construct() 
     {
@@ -12,138 +12,142 @@ class C_setup_fasilitas extends CI_Controller {
             redirect('C_login');
         }
         //$this->load->model('M_bidan');
-        $this->load->model('M_fasilitas');
+        $this->load->model('M_artikel');
         //$this->load->model('m_siswa');
     }
     // mobile-based
 	public function index()
 	{
-        $data["rs_fasilitas"] = $this->M_fasilitas->getAllfasilitas();
-		$this->template->load('static','setup_fasilitas',$data);
+        $data["rs_artikel"] = $this->M_artikel->getAllartikel();
+		$this->template->load('static','setup_artikel',$data);
 	}
 
     public function create()
 	{
-		$this->template->load('static','C_fasilitas');
+		$this->template->load('static','C_artikel');
 	}
 
     public function edit($id)
 	{
         $data["id"]=$id;
-        $data["rs_fasilitas"] = $this->M_fasilitas->getAllfasilitasById($id);
-		$this->template->load('static','U_fasilitas',$data);
+        $data["rs_artikel"] = $this->M_artikel->getAllartikelById($id);
+		$this->template->load('static','U_artikel',$data);
 	}
 
     public function post_create()
 	{
         $data = array(
-            // 'id_fasilitas'   =>$this->input->post('kode_fasilitas'),
-            'nama_fasilitas' =>$this->input->post('nama_fasilitas'),
-            'status'        =>$this->input->post('status'),
+            // 'id_artikel'   =>$this->input->post('kode_artikel'),
+            'judul_artikel' =>$this->input->post('judul_artikel'),
+            'isi_artikel' =>$this->input->post('isi_artikel'),
+            'status_artikel'        =>$this->input->post('status_artikel'),
         );
-        $create = $this->M_fasilitas->create($data);
+        $create = $this->M_artikel->create($data);
         if($create){
             $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Disimpan</font></span>");
         }else{
             $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='red'>Data tidak Berhasil disimpan</font></span>");
         }
-        redirect("C_setup_fasilitas/index");
+        redirect("C_setup_artikel/index");
 	}
 
     public function post_edit($id)
 	{
-        $where = array('id_fasilitas'=>$id);
+        $where = array('id_artikel'=>$id);
         $data = array(
-            // 'kode_fasilitas'   =>$this->input->post('kode_fasilitas'),
-            'nama_fasilitas' =>$this->input->post('nama_fasilitas'),
-            'status'        =>$this->input->post('status'),
+            // 'kode_artikel'   =>$this->input->post('kode_artikel'),
+            'judul_artikel' =>$this->input->post('judul_artikel'),
+            'isi_artikel' =>$this->input->post('isi_artikel'),
+            'status_artikel'        =>$this->input->post('status_artikel'),
         );
-        $edit = $this->M_fasilitas->edit($data,$where);
+        $edit = $this->M_artikel->edit($data,$where);
         if($edit){
             $this->session->set_userdata("notif_edit","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Disimpan</font></span>");
         }else{
             $this->session->set_userdata("notif_edit","<span class='login100-form-title-1'><font size='3px' color='red'>Data tidak Berhasil disimpan</font></span>");
         }
 
-        redirect("C_setup_fasilitas/edit/".$id);
+        redirect("C_setup_artikel/edit/".$id);
 	}
 
     public function delete($id)
 	{
-        $where = array('id_fasilitas'=>$id);
+        $where = array('id_artikel'=>$id);
         
-        $delete = $this->M_fasilitas->delete($where);
+        $delete = $this->M_artikel->delete($where);
         if($delete){
             $this->session->set_userdata("notif_delete","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Dihapus</font></span>");
         }else{
             $this->session->set_userdata("notif_delete","<span class='login100-form-title-1'><font size='3px' color='red'>Data tidak Berhasil Dihapus</font></span>");
         }
 
-        redirect("C_setup_fasilitas");
+        redirect("C_setup_artikel");
 	}
     // web based
     public function index_web()
 	{
-        $data["rs_fasilitas"] = $this->M_fasilitas->getAllfasilitas();
-		$this->template->load('static_web','setup_fasilitas_web',$data);
+        $data["rs_artikel"] = $this->M_artikel->getAllartikel();
+		$this->template->load('static_web','setup_artikel_web',$data);
 	}
 
     public function create_web()
 	{
-		$this->template->load('static_web','C_fasilitas_web');
+		$this->template->load('static_web','C_artikel_web');
 	}
 
     public function edit_web($id)
 	{
         $data["id"]=$id;
-        $data["rs_fasilitas"] = $this->M_fasilitas->getAllfasilitasById($id);
-		$this->template->load('static_web','U_fasilitas_web',$data);
+        $data["rs_artikel"] = $this->M_artikel->getAllartikelById($id);
+		$this->template->load('static_web','U_artikel_web',$data);
 	}
 
     public function post_create_web()
 	{
         $data = array(
-            // 'id_fasilitas'   =>$this->input->post('kode_fasilitas'),
-            'nama_fasilitas' =>$this->input->post('nama_fasilitas'),
-            'status'        =>$this->input->post('status'),
+            // 'id_artikel'   =>$this->input->post('kode_artikel'),
+            'judul_artikel' =>$this->input->post('judul_artikel'),
+            'isi_artikel' =>$this->input->post('isi_artikel'),
+            'status_artikel'        =>$this->input->post('status_artikel'),
         );
-        $create = $this->M_fasilitas->create($data);
+        $create = $this->M_artikel->create($data);
         if($create){
             $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Disimpan</font></span>");
         }else{
             $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='red'>Data tidak Berhasil disimpan</font></span>");
         }
-        redirect("C_setup_fasilitas/index_web");
+        redirect("C_setup_artikel/index_web");
 	}
 
     public function post_edit_web($id)
 	{
-        $where = array('id_fasilitas'=>$id);
+        $where = array('id_artikel'=>$id);
         $data = array(
-            'nama_fasilitas' =>$this->input->post('nama_fasilitas'),
-            'status'        =>$this->input->post('status'),
+            'judul_artikel' =>$this->input->post('judul_artikel'),
+            'isi_artikel' =>$this->input->post('isi_artikel'),
+            'status_artikel'        =>$this->input->post('status_artikel'),
         );
-        $edit = $this->M_fasilitas->edit($data,$where);
+        $edit = $this->M_artikel->edit($data,$where);
         if($edit){
             $this->session->set_userdata("notif_edit","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Disimpan</font></span>");
         }else{
             $this->session->set_userdata("notif_edit","<span class='login100-form-title-1'><font size='3px' color='red'>Data tidak Berhasil disimpan</font></span>");
         }
 
-        redirect("C_setup_fasilitas/edit_web/".$id);
+        redirect("C_setup_artikel/edit_web/".$id);
 	}
 
     public function delete_web($id)
 	{
-        $where = array('id_fasilitas'=>$id);
+        $where = array('id_artikel'=>$id);
         
-        $delete = $this->M_fasilitas->delete($where);
+        $delete = $this->M_artikel->delete($where);
         if($delete){
             $this->session->set_userdata("notif_delete","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Dihapus</font></span>");
         }else{
             $this->session->set_userdata("notif_delete","<span class='login100-form-title-1'><font size='3px' color='red'>Data tidak Berhasil Dihapus</font></span>");
         }
 
-        redirect("C_setup_fasilitas/index_web");
+        redirect("C_setup_artikel/index_web");
 	}
 }

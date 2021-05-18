@@ -1,11 +1,12 @@
-<div class="container">
+<div class="card-wrapper">
+    <div class="card-body">
 <h6 class="title float-right btn-sm btn-primary ml-1" onclick="window.history.back();"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
-<h6 class="title float-right btn-sm btn-primary" onclick="window.location='<?=base_url('C_setup_bidan/create')?>'"><i class="fas fa-plus"></i>&nbsp Tambah</h6>
+<h6 class="title float-right btn-sm btn-primary" onclick="window.location='<?=base_url('C_setup_bidan/create_web')?>'"><i class="fas fa-plus"></i>&nbsp Tambah</h6>
 <h4 class="title"><i class="fas fa-columns"></i>&nbsp Setup Bidan</h4><br>
 <?= $this->session->userdata("notif_insert");$this->session->unset_userdata("notif_insert")?>
 <?= $this->session->userdata("notif_delete");$this->session->unset_userdata("notif_delete")?>
-<div class="table-responsive">
-        <table class="table table-shopping">
+<div class="table">
+        <table class="table">
             <thead>
                 <th>Nama Bidan</th>
                 <th>Klinik</th>
@@ -36,7 +37,7 @@
                         <td>
                         <button
                                 class="btn btn-primary btn-sm m-1" data-toggle="modal" data-target="#delete" type="button">Hapus</button>
-                            <button onclick="window.location='<?=base_url('C_setup_bidan/edit/').$bid->id_bidan?>'"
+                            <button onclick="window.location='<?=base_url('C_setup_bidan/edit_web/').$bid->id_bidan?>'"
                                 class="btn btn-primary btn-sm m-1">Ubah</button>
                         </td>
                     </tr>
@@ -60,8 +61,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary" onclick="window.location='<?=base_url('C_setup_bidan/delete/').$bid->id_bidan?>'">Hapus</button>
+        <button type="button" class="btn btn-primary" onclick="window.location='<?=base_url('C_setup_bidan/delete_web/').$bid->id_bidan?>'">Hapus</button>
       </div>
     </div>
   </div>
+</div>
 </div>

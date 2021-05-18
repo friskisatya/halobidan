@@ -1,45 +1,45 @@
-<div class="container">
-<h6 class="title float-right btn-sm btn-primary ml-1" onclick="window.history.back();"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
-<h6 class="title float-right btn-sm btn-primary" onclick="window.location='<?=base_url('C_setup_artikel/create')?>'"><i class="fas fa-plus"></i>&nbsp Tambah</h6>
-<h4 class="title"><i class="fas fa-columns"></i>&nbsp Setup Artikel</h4><br>
-<?= $this->session->userdata("notif_insert");$this->session->unset_userdata("notif_insert")?>
-<?= $this->session->userdata("notif_delete");$this->session->unset_userdata("notif_delete")?>
-<div class="table-responsive">
-        <table class="table table-shopping">
-            <thead>
-            <thead>
-                <th>Judul Artikel</th>
-                <th>Status</th>
-                <th class="text_right">Aksi</th>
-            </thead>
-            <tbody>
+<div class="card-wrapper">
+    <div class="card-body">
+        <h6 class="title float-right btn-sm btn-primary" onclick="window.location='<?=base_url('C_setup_klinik/create_web')?>'"><i class="fas fa-plus"></i>&nbsp Tambah</h6>
+        <h4 class="title"><i class="fas fa-columns"></i>&nbsp Setup Klinik</h4><br>
+        <?= $this->session->userdata("notif_insert");$this->session->unset_userdata("notif_insert")?>
+        <?= $this->session->userdata("notif_delete");$this->session->unset_userdata("notif_delete")?>
+        
+            <table class="table ">
+                <thead>
+                    <th>Nama Klinik</th>
+                    <th>Alamat</th>
+                    <th>Aksi</th>
+                </thead>
+                <tbody>
                     <?php
-                foreach($rs_artikel as $artikel)
+                foreach($rs_klinik as $klinik)
                 {
                 ?>
                     <tr>
                         <td>
                             <p class="text-center text-capitalize">
-                                <?= $artikel->judul_artikel?>
+                                <?= $klinik->nama_klinik?>
                             </p>
                         </td>
                         <td>
                             <p class="text-center text-capitalize">
-                                <?= $artikel->status_artikel?>
+                                <?= $klinik->alamat_klinik?>
                             </p>
                         </td>
                         <td>
-                        <button
+                            <button
                                 class="btn btn-primary btn-sm m-1" data-toggle="modal" data-target="#delete" type="button">Hapus</button>
-                            <button onclick="window.location='<?=base_url('C_setup_artikel/edit/').$artikel->id_artikel?>'"
+                            <button onclick="window.location='<?=base_url('C_setup_klinik/edit_web/').$klinik->id_klinik?>'"
                                 class="btn btn-primary btn-sm m-1">Ubah</button>
                         </td>
                     </tr>
                     <?php } ?>
                 </tbody>
-        </table>
+            </table> 
     </div>
 </div>
+<!-- Modal -->
 <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -54,7 +54,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary" onclick="window.location='<?=base_url('C_setup_artikel/delete/').$artikel->id_artikel?>'">Hapus</button>
+        <button type="button" class="btn btn-primary" onclick="window.location='<?=base_url('C_setup_klinik/delete_web/').$klinik->id_klinik?>'">Hapus</button>
       </div>
     </div>
   </div>

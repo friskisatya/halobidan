@@ -1,22 +1,22 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_bidan extends CI_Model {
+class M_Fasilitas extends CI_Model {
 
-	public function getAllbidan()
+	public function getAllfasilitas()
 	{
-		return $this->db->get('t_bidan')->result();
+		return $this->db->get('t_fasilitas')->result();
 	}
 
-	public function getAllbidanById($id_bidan)
+	public function getAllfasilitasById($id_fasilitas)
 	{
-		$data = array('id_bidan'=>$id_bidan);
+		$data = array('id_fasilitas'=>$id_fasilitas);
 		$this->db->where($data);
-		return $this->db->get('t_bidan')->result();
+		return $this->db->get('t_fasilitas')->result();
 	}
 
 	public function create($data){
-		if($this->db->insert('t_bidan', $data)){
+		if($this->db->insert('t_fasilitas', $data)){
 			return true;
 		}else{
 			return false;
@@ -25,7 +25,7 @@ class M_bidan extends CI_Model {
 
 	public function edit($data,$where){
 		$this->db->where($where);
-		if($this->db->update('t_bidan', $data)){
+		if($this->db->update('t_fasilitas', $data)){
 			return true;
 		}else{
 			return false;
@@ -34,7 +34,7 @@ class M_bidan extends CI_Model {
 
 	public function delete($where){
 		$this->db->where($where);
-		if($this->db->delete('t_bidan')){
+		if($this->db->delete('t_fasilitas')){
 			return true;
 		}else{
 			return false;

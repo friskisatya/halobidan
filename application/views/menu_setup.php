@@ -9,7 +9,7 @@
                 </div>
             </div>
         </div>
-        <div class="btn col m-1" onclick="window.location='<?=base_url('C_setup_fasilitas_klinik')?>'">
+        <div class="btn col m-1" onclick="window.location='<?=base_url('C_setup_fasilitas')?>'">
             <div class="card-wrapper">
             <img class="card-img-top rounded mx-auto d-block mt-1" src="<?= base_url()?>/assets/img/clinic.png" alt="Card image cap" style ="width : 3rem ; height : 3rem;">
                 <div class="card-body p-1">
@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class="btn col m-1" onclick="window.location='<?=base_url('C_setup_tenaga_kesehatan')?>'">
+        <div class="btn col m-1" onclick="window.location='<?=base_url('C_setup_bidan')?>'">
             <div class="card-wrapper">
             <img class="card-img-top rounded mx-auto d-block mt-1" src="<?= base_url()?>/assets/img/calc.png" alt="Card image cap" style ="width : 3rem ; height : 3rem;">
                 <div class="card-body p-1">

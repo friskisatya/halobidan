@@ -1,42 +1,43 @@
-<div class="container">
-<h6 class="title float-right btn-sm btn-primary ml-1" onclick="window.history.back();"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
-<h6 class="title float-right btn-sm btn-primary" onclick="window.location='<?=base_url('C_setup_bidan/create')?>'"><i class="fas fa-plus"></i>&nbsp Tambah</h6>
-<h4 class="title"><i class="fas fa-columns"></i>&nbsp Setup Bidan</h4><br>
+<div class="card-wrapper">
+    <div class="card-body">
+<!-- <h6 class="title float-right btn-sm btn-primary ml-1" onclick="window.history.back();"><i class="fas fa-arrow-left"></i>&nbsp Back</h6> -->
+<h6 class="title float-right btn-sm btn-primary" onclick="window.location='<?=base_url('C_setup_faq/create_web')?>'"><i class="fas fa-plus"></i>&nbsp Tambah</h6>
+<h4 class="title"><i class="fas fa-columns"></i>&nbsp Setup FAQ</h4><br>
 <?= $this->session->userdata("notif_insert");$this->session->unset_userdata("notif_insert")?>
 <?= $this->session->userdata("notif_delete");$this->session->unset_userdata("notif_delete")?>
-<div class="table-responsive">
-        <table class="table table-shopping">
+<div class="table">
+        <table class="table">
             <thead>
-                <th>Nama Bidan</th>
-                <th>Klinik</th>
-                <th>Pengalaman</th>
+                <th>Ask</th>
+                <th>Question</th>
+                <th>Status</th>
                 <th class="text_right">Aksi</th>
             </thead>
             <tbody>
             <?php
-                foreach($rs_bidan as $bid)
+                foreach($rs_faq as $bid)
                 {
                 ?>
                     <tr>
                         <td>
                             <p class="text-center text-capitalize">
-                                <?= $bid->nama_bidan?> <?= $bid->gelar?>
-                            </p>
-                        </td>
-                        <td>
-                        <p class="text-center text-capitalize">
-                        nama klinik
+                                <?= $bid->ask?>
                             </p>
                         </td>
                         <td>
                             <p class="text-center text-capitalize">
-                                <?= $bid->mulai_bekerja?>
+                            <?= $bid->question?>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="text-center text-capitalize">
+                                <?= $bid->status_faq?>
                             </p>
                         </td>
                         <td>
                         <button
                                 class="btn btn-primary btn-sm m-1" data-toggle="modal" data-target="#delete" type="button">Hapus</button>
-                            <button onclick="window.location='<?=base_url('C_setup_bidan/edit/').$bid->id_bidan?>'"
+                            <button onclick="window.location='<?=base_url('C_setup_faq/edit_web/').$bid->id_faq?>'"
                                 class="btn btn-primary btn-sm m-1">Ubah</button>
                         </td>
                     </tr>
@@ -44,7 +45,6 @@
             </tbody>
         </table>
     </div>
-</div>
 </div>
 <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -60,8 +60,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary" onclick="window.location='<?=base_url('C_setup_bidan/delete/').$bid->id_bidan?>'">Hapus</button>
+        <button type="button" class="btn btn-primary" onclick="window.location='<?=base_url('C_setup_faq/delete_web/').$bid->id_faq?>'">Hapus</button>
       </div>
     </div>
   </div>
+</div>
 </div>

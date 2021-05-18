@@ -1,6 +1,7 @@
 <div class="container">
-    <h6 class="title float-right btn-sm btn-primary ml-1"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
-    <h4 class="title"><i class="fas fa-columns"></i>&nbsp Tambah Data Artikel</h4>
+<h6 class="title float-right btn-sm btn-primary ml-1" onclick="window.history.back();"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
+    <h4 class="title"><i class="fas fa-columns"></i>&nbsp Tambah Artikel</h4>
+    <form action="<?=base_url('C_setup_artikel/post_create')?>" method="POST">
     <form action="">
         <div class="card-body">
             <div class="form-group">
@@ -9,11 +10,11 @@
             </div>
             <div class="form-group">
                 <label for="artikel">Isi Artikel</label>
-                <textarea name="artikel" id="artikel" cols="50" rows="20" class="form-control" wordwrap="true"></textarea>
+                <textarea name="isi_artikel" id="isi_artikel" cols="50" rows="20" class="form-control" wordwrap="true"></textarea>
             </div>
             <div class="form-group">
-                <label for="status">Status (Visible)</label>
-                <select name="status" id="status" class="form-control" style=" background: rgba(0, 0, 0, 0.2);">
+                <label for="status_artikel">Status (Visible)</label>
+                <select name="status_artikel" id="status_artikel" class="form-control" style=" background: rgba(0, 0, 0, 0.2);">
                     <option value="">Pilih Status</option>
                     <option value="1">Aktif</option>
                     <option value="0">Tidak Aktif</option>

@@ -1,29 +1,24 @@
 <div class="container">
-    <h6 class="title float-right btn-sm btn-primary ml-1"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
-    <h4 class="title"><i class="fas fa-columns"></i>&nbsp Tambah Data Bidan</h4>
+<h6 class="title float-right btn-sm btn-primary ml-1" onclick="window.history.back();"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
+    <h4 class="title"><i class="fas fa-columns"></i>&nbsp Sunting Artikel</h4>
+    <?= $this->session->userdata("notif_edit");$this->session->unset_userdata("notif_edit")?>
+        <form action="<?=base_url('C_setup_artikel/post_edit/').$id ?>" method="POST">
     <form action="">
         <div class="card-body">
             <div class="form-group">
-                    <label for="nama_bidan">Nama Bidan</label>
-                    <input type="text" name="nama_bidan" id="nama_bidan" class="form-control" placeholder="Nama Bidan">
+                    <label for="judul_artikel">Judul Artikel</label>
+                    <input type="text" name="judul_artikel" id="judul_artikel" class="form-control" placeholder="Judul Artikel" value="<?=$rs_artikel[0]->judul_artikel?>">
             </div>
             <div class="form-group">
-                <label for="klinik">Klinik</label>
-                <select name="klinik" id="klinik" class="form-control" style=" background: rgba(0, 0, 0, 0.2);">
-                    <option value="">Pilih Klinik</option>
-                    <option value="N/A">Buka Praktek Sendiri</option>
-                </select>
-            </div>
-            <div class="form-group">
-                    <label for="pengalaman">Pengalaman</label>
-                    <input type="number" name="pengalaman" id="pengalaman" class="form-control">
+                <label for="artikel">Isi Artikel</label>
+                <textarea name="isi_artikel" id="isi_artikel" cols="50" rows="20" class="form-control" wordwrap="true"><?=$rs_artikel[0]->isi_artikel?></textarea>
             </div>
             <div class="form-group">
                 <label for="status">Status (Visible)</label>
                 <select name="status" id="status" class="form-control" style=" background: rgba(0, 0, 0, 0.2);">
-                    <option value="">Pilih Status</option>
-                    <option value="1">Aktif</option>
-                    <option value="0">Tidak Aktif</option>
+                <option <?=$rs_artikel[0]->status_artikel==""?"selected":"" ?> value="">Pilih Status</option>
+                        <option <?=$rs_artikel[0]->status_artikel=="0"?"selected":"" ?> value="0">Aktif</option>
+                        <option <?=$rs_artikel[0]->status_artikel=="1"?"selected":"" ?> value="1">Tidak Aktif</option>
                 </select>
             </div>
             <div class="form-group">
