@@ -51,9 +51,9 @@
                 <a href="#" class="col">
                     <h4 class="btn btn-md btn-info">Telepon</h4>
                 </a>
-                <button  onclick="f_location()" class="col-auto">
+                <a href="#"  onclick="f_location()" class="col">
                     <h4 class="btn btn-md btn-info">Petunjuk Arah</h4>
-                </button>
+                </a>
             </div>
         </div>
         <hr>
@@ -128,6 +128,7 @@ function f_location(){
          window.open("maps://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=-6.876728708573167,107.57803210861529");
     else
          window.open("https://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=-6.876728708573167,107.57803210861529");
+        //   window.open("https://wa.me/6282130327606?text=Saya%20ingin%20bertanya%20tentang%20rumah%20yang%20dijual");
 }
 </script>
 <!-- end of article -->
