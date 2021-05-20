@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2021 at 04:42 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.3.27
+-- Generation Time: May 20, 2021 at 01:56 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -119,15 +119,21 @@ CREATE TABLE `t_klinik` (
   `telp_klinik` varchar(2000) NOT NULL,
   `keterangan` varchar(2000) NOT NULL,
   `tentang` varchar(5000) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 0
+  `status` int(11) NOT NULL DEFAULT 0,
+  `latitude` varchar(2000) NOT NULL,
+  `longitude` varchar(2000) NOT NULL,
+  `img_path` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `t_klinik`
 --
 
-INSERT INTO `t_klinik` (`id_klinik`, `nama_klinik`, `alamat_klinik`, `telp_klinik`, `keterangan`, `tentang`, `status`) VALUES
-(2, 'Klink Kemayoran', 'Jl. Garuda No.26 B, RT.1/RW.2, Kemayoran, Kec. Kemayoran,\r\n                            Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10620, Indonesia', '123123123', 'Test', '', 0);
+INSERT INTO `t_klinik` (`id_klinik`, `nama_klinik`, `alamat_klinik`, `telp_klinik`, `keterangan`, `tentang`, `status`, `latitude`, `longitude`, `img_path`) VALUES
+(2, 'Klink Kemayoran', 'Jl. Garuda No.26 B, RT.1/RW.2, Kemayoran, Kec. Kemayoran,\r\n                            Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10620, Indonesia', '123123123', 'Test', '', 0, '-6.200000', '106.816666', ''),
+(14, 'asdf', 'adsf', '3244', '', 'asdf', 0, '', '', 'asdasd.png'),
+(15, 'Ufudu', 'Fucudud', '75757', '', 'Gzgzz', 0, '', '', 'IMG-20210517-WA00211.jpeg'),
+(16, '12321321', 'asdasdsddasd', '123123213', '', 'adsasdsa', 0, '-6.244343', '106.836476', 'tes.png');
 
 -- --------------------------------------------------------
 
@@ -284,7 +290,7 @@ ALTER TABLE `t_fasilitas`
 -- AUTO_INCREMENT for table `t_klinik`
 --
 ALTER TABLE `t_klinik`
-  MODIFY `id_klinik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_klinik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `t_klinik_anggota`
