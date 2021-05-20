@@ -41,17 +41,13 @@
         </div>
         <img class="card-img-top" src="<?= base_url()?>/assets/img/maps.png" alt="maps" href="<?=base_url()?>">
         <div class="card-body">
-            <h4 class="card-title text-center" href="<?=base_url()?>">Jl. Garuda No.26 B, RT.1/RW.2, Kemayoran, Kec.
-                Kemayoran, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10620, Indonesia</h4>
-            <p class="card-text text-justify">Klinik Pratama Kemayoran hadir di pusat ibukota Jakarta sejak tahun 2012.
-                Dengan mengusung konsep “one stop service clinic”, Klinik Kemayoran menawarkan perawatan lengkap dari
-                ujung rambut sampai ujung kaki. Selain itu, klinik kemayoran juga didukung oleh tenaga medis dan staff
-                yang bersertifikasi, serta alat-alat dan obat-obatan yang aman.</p>
+            <h4 class="card-title text-center" href="<?=base_url()?>"><?=$klinik->alamat_klinik?></h4>
+            <p class="card-text text-justify"><?=$klinik->keterangan?></p>
             <div class="row">
-                <a href="#" class="col">
+                <a href="#" class="col" onclick="f_telp('<?=$klinik->telp_klinik?>')">
                     <h4 class="btn btn-md btn-info">Telepon</h4>
                 </a>
-                <a href="#"  onclick="f_location()" class="col">
+                <a href="#"  onclick="f_location('<?=$klinik->latitude?>','<?=$klinik->longitude?>')" class="col">
                     <h4 class="btn btn-md btn-info">Petunjuk Arah</h4>
                 </a>
             </div>
@@ -76,7 +72,8 @@
                                 tb.id_bidan,
                                 tb.nama_bidan,
                                 tb.mulai_bekerja,
-                                tb.img_profile  
+                                tb.img_profile,
+                                tb.telp_bidan
                             FROM 
                                 t_klinik_anggota tka,
                                 t_bidan tb 
@@ -98,7 +95,7 @@
                                                 alt="bidan" style="width: 15rem;">
                                             <div
                                                 class="card-img-overlay d-flex h-10 flex-column justify-content-end p-0">
-                                                <h5 class="card-title text-center btn-warning"><?= $diff->y?></h5>
+                                                <h5 class="card-title text-center btn-warning"><?= $diff->y?> tahun</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -107,7 +104,7 @@
                                     <p class="text-center text-capitalize"><?=$bidan->nama_bidan?></p>
                                 </td>
                                 <td>
-                                    <button class="btn-xm btn-primary">Chat</button>
+                                    <button onclick="f_telp_bidan('<?=$bidan->telp_bidan?>')" class="btn-xm btn-primary">Chat</button>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -120,15 +117,21 @@
     <?php } ?>
 </div>
 <script>
-function f_location(){
+function f_location(latitude,longitude){
     // If it's an iPhone..
     if( (navigator.platform.indexOf("iPhone") != -1) 
         || (navigator.platform.indexOf("iPod") != -1)
         || (navigator.platform.indexOf("iPad") != -1))
-         window.open("maps://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=-6.876728708573167,107.57803210861529");
+         window.open("maps://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination="+latitude+","+longitude);
     else
-         window.open("https://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination=-6.876728708573167,107.57803210861529");
+         window.open("https://www.google.com/maps/dir/?api=1&travelmode=driving&layer=traffic&destination="+latitude+","+longitude);
         //   window.open("https://wa.me/6282130327606?text=Saya%20ingin%20bertanya%20tentang%20rumah%20yang%20dijual");
+}
+function f_telp(telp){
+    window.open("https://wa.me/"+telp+"?text=Saya%20ingin%20bertanya%20tentang%20rumah%20yang%20dijual");
+}
+function f_telp_bidan(telp){
+    window.open("https://wa.me/"+telp+"?text=Saya%20ingin%20bertanya%20tentang%20rumah%20yang%20dijual");
 }
 </script>
 <!-- end of article -->
