@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2021 at 01:56 PM
+-- Generation Time: May 22, 2021 at 05:10 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -206,6 +206,24 @@ INSERT INTO `t_login` (`id`, `nama`, `alamat`, `no_telp`, `email`, `password`, `
 (2, 'friski', '', '82130327606', 'friskisatya5@gmail.com', '202cb962ac59075b964b07152d234b70', '1', '', 1),
 (4, 'friski', '', '82130327606', 'test@mail.com', '202cb962ac59075b964b07152d234b70', '1', '', 0);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_tentang`
+--
+
+CREATE TABLE `t_tentang` (
+  `id_tentang` int(11) NOT NULL,
+  `tentang` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_tentang`
+--
+
+INSERT INTO `t_tentang` (`id_tentang`, `tentang`) VALUES
+(1, 'Tujuan aplikasi ini dibangun adalah untuk memenuhi tugas skripsi perkuliahan dan untuk masyarakat luas dalam ruang lingkup dikhususkan untuk ibu yang sedang mengandung agar dapat mengetahui informasi terkait fasilitas kesehatan yang terdekat                    ');
+
 --
 -- Indexes for dumped tables
 --
@@ -259,6 +277,12 @@ ALTER TABLE `t_login`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `t_tentang`
+--
+ALTER TABLE `t_tentang`
+  ADD PRIMARY KEY (`id_tentang`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -309,6 +333,12 @@ ALTER TABLE `t_klinik_fasilitas`
 --
 ALTER TABLE `t_login`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `t_tentang`
+--
+ALTER TABLE `t_tentang`
+  MODIFY `id_tentang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

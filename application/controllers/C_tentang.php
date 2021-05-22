@@ -14,6 +14,7 @@ class C_tentang extends CI_Controller {
 
 	public function index()
 	{
-		$this->template->load('static','tentang');
+        $data["rs_tentang"] = $this->db->get('t_tentang')->result();
+		$this->template->load('static','tentang',$data);
 	}
 }

@@ -1,36 +1,28 @@
 <div class="container">
 <h6 class="title float-right btn-sm btn-primary ml-1" onclick="window.history.back();"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
-<h6 class="title float-right btn-sm btn-primary" onclick="window.location='<?=base_url('C_setup_fasilitas/create')?>'"><i class="fas fa-plus"></i>&nbsp Tambah</h6>
-<h4 class="title"><i class="fas fa-columns"></i>&nbsp Setup Fasilitas Klinik</h4><br>
+<!-- <h6 class="title float-right btn-sm btn-primary" onclick="window.location='<?=base_url('C_setup_tentang/create')?>'"><i class="fas fa-plus"></i>&nbsp Tambah</h6> -->
+<h4 class="title"><i class="fas fa-columns"></i>&nbsp Setup Tentang Klinik</h4><br>
 <?= $this->session->userdata("notif_insert");$this->session->unset_userdata("notif_insert")?>
 <?= $this->session->userdata("notif_delete");$this->session->unset_userdata("notif_delete")?>
 <div class="table-responsive">
         <table class="table table-shopping">
             <thead>
-                <th>Nama Fasilitas</th>
-                <th>Status</th>
+                <th>Tentang</th>
                 <th class="text_right">Aksi</th>
             </thead>
             <tbody>
                     <?php
-                foreach($rs_fasilitas as $fas)
+                foreach($rs_tentang as $tentang)
                 {
                 ?>
                     <tr>
                         <td>
                             <p class="text-center text-capitalize">
-                                <?= $fas->nama_fasilitas?>
+                                <?= $tentang->tentang?>
                             </p>
                         </td>
                         <td>
-                            <p class="text-center text-capitalize">
-                                <?= $fas->status=="0"?"Aktif":"Tidak Aktif"?>
-                            </p>
-                        </td>
-                        <td>
-                        <button
-                                class="btn btn-primary btn-sm m-1" data-toggle="modal" data-target="#delete" type="button">Hapus</button>
-                            <button onclick="window.location='<?=base_url('C_setup_fasilitas/edit/').$fas->id_fasilitas?>'"
+                            <button onclick="window.location='<?=base_url('C_setup_tentang/edit/').$tentang->id_tentang?>'"
                                 class="btn btn-primary btn-sm m-1">Ubah</button>
                         </td>
                     </tr>
@@ -53,7 +45,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary" onclick="window.location='<?=base_url('C_setup_fasilitas/delete/').$fas->id_fasilitas?>'">Hapus</button>
+        <button type="button" class="btn btn-primary" onclick="window.location='<?=base_url('C_setup_tentang/delete/').$fas->id_tentang?>'">Hapus</button>
       </div>
     </div>
   </div>

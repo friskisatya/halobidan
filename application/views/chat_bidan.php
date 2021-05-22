@@ -18,7 +18,8 @@
                         tb.id_bidan,
                         tb.nama_bidan,
                         tb.mulai_bekerja,
-                        tb.img_profile  
+                        tb.img_profile,  
+                        tb.telp_bidan
                     FROM 
                         t_klinik_anggota tka,
                         t_bidan tb 
@@ -48,7 +49,7 @@
                         <p class="text-center text-capitalize"><?=$bidan->nama_bidan?></p>
                     </td>
                     <td>
-                        <button class="btn-xm btn-primary">Chat</button>
+                    <button onclick="f_telp_bidan('<?=$bidan->telp_bidan?>')" class="btn-xm btn-primary">Chat</button>
                     </td>
                 </tr>
                 <?php } ?>
@@ -58,4 +59,9 @@
     </div>
 </div>
 
+<script>
+function f_telp_bidan(telp){
+    window.open("https://wa.me/"+telp+"?text=Saya%20ingin%20bertanya%20tentang%20rumah%20yang%20dijual");
+}
+</script>
 <!-- end of article -->

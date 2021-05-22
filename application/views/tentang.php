@@ -3,7 +3,7 @@
     <div class="card-wrapper">
         <div class="card-body">
             <p class="description">
-                Tujuan aplikasi ini dibangun adalah untuk memenuhi tugas skripsi perkuliahan dan untuk masyarakat luas dalam ruang lingkup dikhususkan untuk ibu yang sedang mengandung agar dapat mengetahui informasi terkait fasilitas kesehatan yang terdekat
+                <?= $rs_tentang[0]->tentang?>
             </p>
         </div>
     </div>

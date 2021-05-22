@@ -104,7 +104,14 @@
                                     <p class="text-center text-capitalize"><?=$bidan->nama_bidan?></p>
                                 </td>
                                 <td>
+                                <?php 
+                                if ($this->session->userdata('email')=="" OR empty($this->session->userdata('email'))) {
+                                    $this->session->set_userdata("notif_login","<span class='login100-form-title-1'><font size='3px' color='#c80000'>Silahkan Login Terlebih Dahulu</font></span>");
+                                    
+                                }else{
+                                ?>
                                     <button onclick="f_telp_bidan('<?=$bidan->telp_bidan?>')" class="btn-xm btn-primary">Chat</button>
+                                <?php } ?>
                                 </td>
                             </tr>
                         <?php } ?>

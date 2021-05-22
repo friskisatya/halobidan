@@ -9,6 +9,7 @@ class C_index extends CI_Controller {
         parent::__construct();
         $this->load->model('M_bidan');
         $this->load->model('M_klinik');
+        $this->load->model('M_faq');
         //$this->load->model('m_siswa');
     }
 
@@ -24,6 +25,10 @@ class C_index extends CI_Controller {
 
     public function chat_bidan()
 	{
+        if ($this->session->userdata('email')=="" OR empty($this->session->userdata('email'))) {
+            $this->session->set_userdata("notif_login","<span class='login100-form-title-1'><font size='3px' color='#c80000'>Silahkan Login Terlebih Dahulu</font></span>");
+            redirect('C_login');
+        }
         $data['rs_bidan'] = $this->M_bidan->getAllBidan();
         $data['rs_klinik'] = $this->M_klinik->getAllKlinik();
 		$this->template->load('static','chat_bidan',$data);
@@ -36,6 +41,13 @@ class C_index extends CI_Controller {
 		$this->template->load('static','list_klinik',$data);
 	}
 
+    public function faq()
+	{
+        //$data['rs_klinik'] = $this->M_klinik->getAllKlinik();
+        $data['rs_faq'] = $this->M_faq->getAllfaq();
+		$this->template->load('static','faq',$data);
+	}
+
     public function kalkulator_kehamilan()
 	{
         //$data['rs_klinik'] = $this->M_klinik->getAllKlinik();
@@ -46,13 +58,13 @@ class C_index extends CI_Controller {
             
 
             $hpt=date_create($this->input->post('tanggal_haid'));
+            //var_dump($hpt);die;
             $hp=date_create($this->input->post('tanggal_haid'));
             //date_add($date,date_interval_create_from_date_string("40 days"));
-            //echo date_format($date,"Y-m-d");
-
+            //echo date_format($hpt,"Y-m-d");die
             $lama_siklus = $this->input->post('siklus_haid')-21;
 
-            $total = $lama_siklus + 180;
+            $total = $lama_siklus + 270;
             $data["tgl_input"]=$this->input->post('tanggal_haid');
             $data["hpt"] = date_add($hpt,date_interval_create_from_date_string($total." days"));
             //echo date_format($date,"Y-m-d");

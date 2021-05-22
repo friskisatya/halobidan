@@ -25,6 +25,7 @@
         Perkiraan Pembuahan : <?=$hp==""?"{tanggal pembuahan}":date_format($hp,"Y-m-d")?><br>
         Perkiraan Usia Janin : <?=$uj_minggu??"0"?> Minggu, <?=$uj_hari??"0"?> Hari   <br>
         Perkiraan lahir : <?=$hpt==""?"{tanggal perkiraan lahir}":date_format($hpt,"Y-m-d")?><br>
+        Asumsi ini mengakibatkan metode ini mempunyai tingkat kesalahan plus minus 2 minggu.
         
     </div>
 </div>
