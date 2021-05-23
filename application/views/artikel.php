@@ -1,49 +1,38 @@
 <div class="container">
-    <h6 class="title float-right btn-sm btn-primary"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
+    <h6 class="title float-right btn-sm btn-primary" onclick="window.location='<?=base_url('C_index')?>'"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
     <h4 class="title"><i class="fas fa-book-open"></i>&nbsp artikel</h4>
     <div class="card">
+    <?php if($rs_artikel[0]->img_artikel!=""||$rs_artikel[0]->img_artikel!=null){?>
+        <img id="previewImg" src="<?= base_url('uploads/').$rs_artikel[0]->img_artikel?>" alt="pic">
+    <?php
+    }else{
+    ?>
         <img class="card-img-top" src="<?= base_url()?>/assets/img/batuk.jpg" alt="Card image cap">
+    <?php } ?>
         <div class="card-body">
-            <h4 class="card-title text-left">Penyebab Batuk Berdahak dan Batuk Kering, serta Cara Mengobatinya.</h4>
-            <p class="card-text text-justify">Batuk berdahak terjadi ketika tubuh menghasilkan lebih banyak dahak atau lendir pada saluran pernapasan. Sedangkan batuk kering merupakan batuk yang tidak mengeluarkan dahak. Baik batuk berdahak maupun batuk kering bisa disebabkan oleh berbagai macam faktor, sehingga cara mengatasinya pun harus disesuaikan dengan penyebabnya.
-
-Batuk merupakan reaksi tubuh terhadap benda asing yang masuk ke dalam sistem pernapasan. Selain sebagai respons terhadap masuknya benda asing ke saluran pernapasan, batuk juga bisa merupakan gejala dari penyakit tertentu. Saat debu, polusi, atau alergen (zat pemicu alergi) memasuki sistem pernapasan, otak akan mengirim sinyal melalui saraf tulang belakang ke otot-otot di dada dan perut. Ketika otot-otot tersebut berkontraksi, udara menyembur melalui sistem pernapasan untuk mendorong keluar benda asing. Hal inilah yang dinamakan batuk.</p>
+            <h4 class="card-title text-left"><?= $rs_artikel[0]->judul_artikel?></h4>
+            <p class="card-text text-justify"><?= $rs_artikel[0]->isi_artikel?></p>
     </div><hr>
     <h4>Baca Artikel Lainnya</h4>
     <div class="row text-center flex-nowrap" style="overflow: auto;">
-        <div class="card-body col-auto m-1 p-auto">
+    <?php foreach($rs_artikel_all as $artikel){?>
+        <div class="btn btn-sm col-auto m-1 p-0 pb-2">
             <div class="card-wrapper" style="width: 20rem;">
-            <img class="card-img-top" src="<?= base_url()?>/assets/img/batuk.jpg" alt="Card image cap">
-                <div class="card-body">
+            <?php if($artikel->img_artikel!=""||$artikel->img_artikel!=null) { ?>
+                <img class="card-img-top" height="180" src="<?= base_url('uploads/').$artikel->img_artikel?>" alt="Card image cap">
+            <?php
+            }else{
+            ?>
+                <img class="card-img-top" height="180" src="<?= base_url()?>/assets/img/batuk.jpg" alt="Card image cap">
+            <?php } ?>
+                <div class="card-body" onclick="window.location='<?=base_url('C_index/artikel/'.$artikel->id_artikel)?>'">
                 <!-- judul untuk artikel -->
-                <p class="card-text text-left">Penyebab Batuk Berdahak dan Batuk Kering, serta Cara Mengobatinya.</p>
+                <p class="card-text text-left"><?= $artikel->judul_artikel?></p>
                 <a href="#" class="btn btn-primary float-right">Baca Selengkapnya </a>
                 </div>
             </div>
         </div>
-
-        <div class="card-body col-auto m-1 p-auto">
-            <div class="card-wrapper" style="width: 20rem;">
-            <img class="card-img-top" src="<?= base_url()?>/assets/img/batuk.jpg" alt="Card image cap">
-                <div class="card-body">
-                <!-- judul untuk artikel -->
-                <p class="card-text text-left">Penyebab Batuk Berdahak dan Batuk Kering, serta Cara Mengobatinya.</p>
-                <a href="#" class="btn btn-primary float-right">Baca Selengkapnya </a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="card-body col-auto m-1 p-auto">
-            <div class="card-wrapper" style="width: 20rem;">
-            <img class="card-img-top" src="<?= base_url()?>/assets/img/batuk.jpg" alt="Card image cap">
-                <div class="card-body">
-                <!-- judul untuk artikel -->
-                <p class="card-text text-left">Penyebab Batuk Berdahak dan Batuk Kering, serta Cara Mengobatinya.</p>
-                <a href="#" class="btn btn-primary float-right">Baca Selengkapnya </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php } ?>
 </div>
 
 <!-- end of article -->

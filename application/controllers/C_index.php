@@ -10,17 +10,26 @@ class C_index extends CI_Controller {
         $this->load->model('M_bidan');
         $this->load->model('M_klinik');
         $this->load->model('M_faq');
+        $this->load->model('M_artikel');
         //$this->load->model('m_siswa');
     }
 
 	public function index()
 	{
-        $this->template->load('static','index');
+        $data["rs_artikel"]= $this->M_artikel->getAllartikelActive();
+        $this->template->load('static','index',$data);
 	}
     
     public function index_web()
 	{
         $this->template->load('static_web','index_web');
+	}
+
+    public function artikel($id)
+	{
+        $data["rs_artikel"]=$this->M_artikel->getAllartikelById($id);
+        $data["rs_artikel_all"]= $this->M_artikel->getAllartikelActive();
+        $this->template->load('static','artikel',$data);
 	}
 
     public function chat_bidan()

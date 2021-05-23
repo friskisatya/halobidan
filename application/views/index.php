@@ -43,27 +43,25 @@
 <div class="container-fluid">
     <h4 class="title"><i class="fas fa-book-open"></i>&nbsp Baca artikel</h4>
     <div class="row text-center flex-nowrap" style="overflow: auto;">
-        <div class="btn btn-sm col-auto m-1 p-0 pb-2">
-            <div class="card-wrapper" style="width: 20rem;">
-            <img class="card-img-top" src="<?= base_url()?>/assets/img/batuk.jpg" alt="Card image cap">
-                <div class="card-body">
-                <!-- judul untuk artikel -->
-                <p class="card-text text-left">Penyebab Batuk Berdahak dan Batuk Kering, serta Cara Mengobatinya.</p>
-                <a href="#" class="btn btn-primary float-right">Baca Selengkapnya </a>
-                </div>
-            </div>
-        </div>
 
+    <?php foreach($rs_artikel as $artikel){?>
         <div class="btn btn-sm col-auto m-1 p-0 pb-2">
             <div class="card-wrapper" style="width: 20rem;">
-            <img class="card-img-top" src="<?= base_url()?>/assets/img/batuk.jpg" alt="Card image cap">
-                <div class="card-body">
+            <?php if($artikel->img_artikel!=""||$artikel->img_artikel!=null) { ?>
+                <img class="card-img-top" height="180" src="<?= base_url('uploads/').$artikel->img_artikel?>" alt="Card image cap">
+            <?php
+            }else{
+            ?>
+                <img class="card-img-top" height="180" src="<?= base_url()?>/assets/img/batuk.jpg" alt="Card image cap">
+            <?php } ?>
+                <div class="card-body" onclick="window.location='<?=base_url('C_index/artikel/'.$artikel->id_artikel)?>'">
                 <!-- judul untuk artikel -->
-                <p class="card-text text-left">Penyebab Batuk Berdahak dan Batuk Kering, serta Cara Mengobatinya.</p>
+                <p class="card-text text-left"><?= $artikel->judul_artikel?></p>
                 <a href="#" class="btn btn-primary float-right">Baca Selengkapnya </a>
                 </div>
             </div>
         </div>
+    <?php } ?>
     </div>
 </div>
        

@@ -25,7 +25,7 @@
                         </td>
                         <td>
                             <p class="text-center text-capitalize">
-                                <?= $artikel->status_artikel?>
+                            <?= $artikel->status_artikel=="0"?"Aktif":"Tidak Aktif"?>
                             </p>
                         </td>
                         <td>

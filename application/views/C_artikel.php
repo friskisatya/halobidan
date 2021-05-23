@@ -1,7 +1,7 @@
 <div class="container">
 <h6 class="title float-right btn-sm btn-primary ml-1" onclick="window.history.back();"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
     <h4 class="title"><i class="fas fa-columns"></i>&nbsp Tambah Artikel</h4>
-    <form action="<?=base_url('C_setup_artikel/post_create')?>" method="POST">
+    <form action="<?=base_url('C_setup_artikel/post_create')?>" method="POST" enctype="multipart/form-data">
     <form action="">
         <div class="card-body">
             <div class="form-group">
@@ -21,19 +21,34 @@
                 </select>
             </div>
             <div class="form-group">
-           <span class="btn btn-raised btn-round btn-primary btn-file">
-              <span class="fileinput-new">Select image</span>
-              <input type="file" name="pic" />
-           </span>
-           <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-            <div class="fileinput-new thumbnail">
-           <img src="https://epicattorneymarketing.com/wp-content/uploads/2016/07/Headshot-Placeholder-1.png" alt="pic">
-            </div>
-            <div class="fileinput-preview fileinput-exists thumbnail"></div>
-         </div>
+        <span class="btn btn-raised btn-round btn-primary btn-file">
+          <span class="fileinput-new">Pilih Gambar</span>
+          <input type="file" name="image" onchange="previewFile(this);"/>
+        </span>
+        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+          <div class="fileinput-new thumbnail">
+            <img id="previewImg" src="https://epicattorneymarketing.com/wp-content/uploads/2016/07/Headshot-Placeholder-1.png" alt="pic">
+          </div>
+          <div class="fileinput-preview fileinput-exists thumbnail"></div>
+        </div>
         </div>
         <div class="container text-center">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
 </form>
 </div>
+<script>
+    function previewFile(input){
+        var file = $("input[type=file]").get(0).files[0];
+ 
+        if(file){
+            var reader = new FileReader();
+ 
+            reader.onload = function(){
+                $("#previewImg").attr("src", reader.result);
+            }
+ 
+            reader.readAsDataURL(file);
+        }
+    }
+</script>

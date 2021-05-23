@@ -8,6 +8,12 @@ class M_artikel extends CI_Model {
 		return $this->db->get('t_artikel')->result();
 	}
 
+	public function getAllartikelActive()
+	{
+		$this->db->where(array('status_artikel'=>0));
+		return $this->db->get('t_artikel')->result();
+	}
+
 	public function getAllartikelById($id_artikel)
 	{
 		$data = array('id_artikel'=>$id_artikel);
