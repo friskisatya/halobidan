@@ -252,7 +252,7 @@ class C_setup_klinik extends CI_Controller {
     public function delete($id)
 	{
         $where = array('id_klinik'=>$id);
-        
+        $this->db->query("DELETE FROM t_klinik_fasilitas where id_klinik='$id'");
         $delete = $this->M_klinik->delete($where);
         if($delete){
             $this->session->set_userdata("notif_delete","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Dihapus</font></span>");
