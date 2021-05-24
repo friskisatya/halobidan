@@ -91,8 +91,10 @@ class C_index extends CI_Controller {
             $uj = $data["hp"]->diff($sekarang);
 
             $uj_minggu_ex1 = explode(".",($uj->days/7));  
+            
             $uj_minggu_ex2 = explode(",",$uj_minggu_ex1[0]);  
-            $data["uj_mingggu"] = $uj_minggu_ex2[0];  
+            var_dump($uj_minggu_ex2[0]);die;
+            $data["uj_minggu"] = $uj_minggu_ex2[0];  
 
             $data["uj_hari"] = $uj->days % 7; 
 

@@ -13,6 +13,7 @@ class C_setup_klinik extends CI_Controller {
         }
         //$this->load->model('M_bidan');
         $this->load->model('M_klinik');
+        $this->load->model('M_fasilitas');
         //$this->load->model('m_siswa');
     }
 
@@ -29,7 +30,8 @@ class C_setup_klinik extends CI_Controller {
 
     public function create()
 	{
-		$this->template->load('static','C_klinik');
+        $data["rs_fasilitas"] = $this->M_fasilitas->getAllfasilitas();
+		$this->template->load('static','C_klinik',$data);
 	}
     public function create_web()
 	{
@@ -40,6 +42,7 @@ class C_setup_klinik extends CI_Controller {
 	{
         $data["id"]=$id;
         $data["rs_klinik"] = $this->M_klinik->getAllKlinikById($id);
+        $data["rs_fasilitas"] = $this->M_fasilitas->getAllfasilitas();
 		$this->template->load('static','U_klinik',$data);
 	}
     public function edit_web($id)
@@ -69,6 +72,19 @@ class C_setup_klinik extends CI_Controller {
                 'longitude'     =>$this->input->post('longitude'),
             );
             $create = $this->M_klinik->create($data);
+
+            $data = array();
+            foreach($this->input->post('fasilitas') as $fasilitas){ // Kita buat perulangan berdasarkan nis sampai data terakhir
+                array_push($data, array(
+                    'id_klinik'=>$create,
+                    'id_fasilitas'=>$fasilitas,
+                ));
+                
+                $index++;
+            }
+
+            $this->db->insert_batch('t_klinik_fasilitas', $data);
+
             if($create){
                 $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Disimpan, Tetapi gambar gagal diupload</font></span>");
             }else{
@@ -92,6 +108,19 @@ class C_setup_klinik extends CI_Controller {
                 'img_path'      =>$filename,
             );
             $create = $this->M_klinik->create($data);
+
+            $data = array();
+            foreach($this->input->post('fasilitas') as $fasilitas){ // Kita buat perulangan berdasarkan nis sampai data terakhir
+                array_push($data, array(
+                    'id_klinik'=>$create,
+                    'id_fasilitas'=>$fasilitas,
+                ));
+                
+                $index++;
+            }
+
+            $this->db->insert_batch('t_klinik_fasilitas', $data);
+
             if($create){
                 $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Disimpan</font></span>");
             }else{
@@ -140,6 +169,20 @@ class C_setup_klinik extends CI_Controller {
                 'longitude'     =>$this->input->post('longitude'),
             );
             $edit = $this->M_klinik->edit($data,$where);
+
+            $data = array();
+            foreach($this->input->post('fasilitas') as $fasilitas){ // Kita buat perulangan berdasarkan nis sampai data terakhir
+                array_push($data, array(
+                    'id_klinik'=>$id,
+                    'id_fasilitas'=>$fasilitas,
+                ));
+                
+                $index++;
+            }
+
+            $this->db->query("DELETE FROM t_klinik_fasilitas where id_klinik ='$id'");
+            $this->db->insert_batch('t_klinik_fasilitas', $data);
+
             if($edit){
                 $this->session->set_userdata("notif_edit","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Disimpan</font></span>");
             }else{
@@ -164,6 +207,20 @@ class C_setup_klinik extends CI_Controller {
                 'img_path'      =>$filename,
             );
             $edit = $this->M_klinik->edit($data,$where);
+
+            $data = array();
+            foreach($this->input->post('fasilitas') as $fasilitas){ // Kita buat perulangan berdasarkan nis sampai data terakhir
+                array_push($data, array(
+                    'id_klinik'=>$id,
+                    'id_fasilitas'=>$fasilitas,
+                ));
+                
+                $index++;
+            }
+
+            $this->db->query("DELETE FROM t_klinik_fasilitas where id_klinik= '$id'");
+            $this->db->insert_batch('t_klinik_fasilitas', $data);
+
             if($edit){
                 $this->session->set_userdata("notif_edit","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Disimpan</font></span>");
             }else{
