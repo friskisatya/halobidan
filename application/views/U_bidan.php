@@ -40,6 +40,37 @@
                 </select>
             </div> -->
             <div class="form-group">
+              <label for="status">Klinik</label>
+              <button type="button"class="btn btn-primary float-right btn-sm" onclick="$('#modalklinik').modal('toggle');">Tambah Klinik</button>
+              <table class="table table-shopping">
+                <thead>
+                <tr>
+                <td>No</td>
+                <td>Klinik</td>
+                </tr>
+                </thead>
+                <tbody id="detail">
+                <?php 
+                  $id = $rs_bidan[0]->id_bidan;
+                  $query = "SELECT k.id_bidan, kf.id_klinik, f.nama_klinik 
+                            FROM t_bidan k,t_klinik f,t_klinik_anggota kf
+                            where
+                              k.id_bidan = $id
+                              AND kf.id_bidan = k.id_bidan
+                              AND f.id_klinik = kf.id_klinik
+                            ";
+                  $rs_klinik_query = $this->db->query($query)->result();
+                  foreach($rs_klinik_query as $fas){
+                ?>
+                <tr id='<?=$fas->id_klinik?>'>
+                  <td><button id='del<?=$fas->id_klinik?>' onclick='f_row_del(<?=$fas->id_klinik?>)' class='btn btn-primary btn-sm'>Hapus</button></td>
+                  <td><input type='hidden' id='input<?=$fas->id_klinik?>' value='<?=$fas->id_klinik?>' name='klinik[]'><?=$fas->nama_klinik?></td>
+                </tr>
+                <?php } ?>
+                </tbody>
+              </table>
+          </div>
+            <div class="form-group">
         <span class="btn btn-raised btn-round btn-primary btn-file">
           <span class="fileinput-new">Pilih Gambar</span>
           <input type="file" name="image" onchange="previewFile(this);"/>
@@ -65,6 +96,34 @@
         </div>
 </form>
 </div>
+
+<div class="modal fade" id="modalklinik" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="card modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Klinik</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="card-body">
+        <table class="table table-shopping" style="font-color:black">
+          <tr>
+          <td>Aksi</td>
+          <td>Nama Klinik</td>
+          </tr>
+          <?php $i=0; foreach($rs_klinik as $klinik){ $i++;?>
+            <tr onclick="f_row_click('<?= $klinik->id_klinik?>','<?= $klinik->nama_klinik?>')">
+            <td><?=$i?></td>
+            <td><?=$klinik->nama_klinik?></td>
+            </tr>
+          <?php } ?>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
     function previewFile(input){
         var file = $("input[type=file]").get(0).files[0];
@@ -78,5 +137,24 @@
  
             reader.readAsDataURL(file);
         }
+    }
+
+    function f_row_click(id_klinik,nama_klinik){
+      console.log($("#"+id_klinik).html())
+        if($("#input"+id_klinik).val()==id_klinik){
+          alert("Data Duplikat");
+        }else{
+          var ls_append = "";
+          ls_append += "<tr id='"+id_klinik+"'>"+
+            "<td><button id='del"+id_klinik+"' onclick='f_row_del("+id_klinik+")' class='btn btn-primary btn-sm'>Hapus</button></td>"+
+            "<td><input type='hidden' id='input"+id_klinik+"' value='"+id_klinik+"' name='klinik[]'>"+nama_klinik+"</td>"
+          "</tr>";
+          $('#detail').append(ls_append); 
+        }  
+        $('#modalklinik').modal('toggle');
+    }
+
+    function f_row_del(id_klinik){
+      $("#"+id_klinik).remove();
     }
 </script>

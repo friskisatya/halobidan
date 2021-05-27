@@ -17,7 +17,8 @@ class M_bidan extends CI_Model {
 
 	public function create($data){
 		if($this->db->insert('t_bidan', $data)){
-			return true;
+			$this->db->trans_complete();
+    		return $this->db->insert_id();
 		}else{
 			return false;
 		}

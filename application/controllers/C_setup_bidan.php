@@ -25,13 +25,15 @@ class C_setup_bidan extends CI_Controller {
 
     public function create()
 	{
-		$this->template->load('static','C_bidan');
+        $data["rs_klinik"] = $this->M_klinik->getAllklinik();
+		$this->template->load('static','C_bidan',$data);
 	}
 
     public function edit($id)
 	{
         $data["id"]=$id;
         $data["rs_bidan"] = $this->M_bidan->getAllbidanById($id);
+        $data["rs_klinik"] = $this->M_klinik->getAllklinik();
 		$this->template->load('static','U_bidan',$data);
 	}
 
@@ -54,6 +56,19 @@ class C_setup_bidan extends CI_Controller {
                 
             );
             $create = $this->M_bidan->create($data);
+
+            $data = array();
+            foreach($this->input->post('klinik') as $klinik){ // Kita buat perulangan berdasarkan nis sampai data terakhir
+                array_push($data, array(
+                    'id_bidan'=>$create,
+                    'id_klinik'=>$klinik,
+                ));
+                
+                $index++;
+            }
+
+            $this->db->insert_batch('t_klinik_anggota', $data);
+
             if($create){
                 $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Disimpan,Tetapi Gambar gagal upload</font></span>");
             }else{
@@ -76,6 +91,19 @@ class C_setup_bidan extends CI_Controller {
                 
             );
             $create = $this->M_bidan->create($data);
+
+            $data = array();
+            foreach($this->input->post('klinik') as $klinik){ // Kita buat perulangan berdasarkan nis sampai data terakhir
+                array_push($data, array(
+                    'id_bidan'=>$create,
+                    'id_klinik'=>$klinik,
+                ));
+                
+                $index++;
+            }
+
+            $this->db->insert_batch('t_klinik_anggota', $data);
+
             if($create){
                 $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Disimpan</font></span>");
             }else{
@@ -103,6 +131,19 @@ class C_setup_bidan extends CI_Controller {
                 'gelar'        =>$this->input->post('gelar'),
             );
             $edit = $this->M_bidan->edit($data,$where);
+
+            $data = array();
+            foreach($this->input->post('klinik') as $klinik){ // Kita buat perulangan berdasarkan nis sampai data terakhir
+                array_push($data, array(
+                    'id_bidan'=>$id,
+                    'id_klinik'=>$klinik,
+                ));
+                
+                $index++;
+            }
+
+            $this->db->query("DELETE FROM t_klinik_anggota where id_bidan ='$id'");
+            $this->db->insert_batch('t_klinik_anggota', $data);
             if($edit){
                 $this->session->set_userdata("notif_edit","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Disimpan</font></span>");
             }else{
@@ -126,6 +167,20 @@ class C_setup_bidan extends CI_Controller {
                 'img_profile'   =>$filename
             );
             $edit = $this->M_bidan->edit($data,$where);
+
+            $data = array();
+            foreach($this->input->post('klinik') as $klinik){ // Kita buat perulangan berdasarkan nis sampai data terakhir
+                array_push($data, array(
+                    'id_bidan'=>$id,
+                    'id_klinik'=>$klinik,
+                ));
+                
+                $index++;
+            }
+
+            $this->db->query("DELETE FROM t_klinik_anggota where id_bidan ='$id'");
+            $this->db->insert_batch('t_klinik_anggota', $data);
+
             if($edit){
                 $this->session->set_userdata("notif_edit","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Disimpan</font></span>");
             }else{
@@ -139,7 +194,7 @@ class C_setup_bidan extends CI_Controller {
     public function delete($id)
 	{
         $where = array('id_bidan'=>$id);
-        
+        $this->db->query("DELETE FROM t_klinik_anggota where id_bidan='$id'");
         $delete = $this->M_bidan->delete($where);
         if($delete){
             $this->session->set_userdata("notif_delete","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Dihapus</font></span>");
