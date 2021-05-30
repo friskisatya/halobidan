@@ -37,7 +37,7 @@
                     <td>
                         <div class="img-container">
                             <div class="card bg-dark text-white">
-                                <img class="card-img" src="<?= base_url()?>/assets/img/<?=$bidan->img_profile?>" alt="bidan"
+                                <img class="card-img" src="<?= base_url()?>uploads/<?=$bidan->img_profile?>" alt="bidan"
                                     style="width: 15rem;">
                                 <div class="card-img-overlay d-flex h-10 flex-column justify-content-end p-0">
                                     <h5 class="card-title text-center btn-warning"><?= $diff->y?> Tahun</h5>
