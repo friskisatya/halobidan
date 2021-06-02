@@ -56,6 +56,12 @@ class C_index extends CI_Controller {
         $data['rs_faq'] = $this->M_faq->getAllfaq();
 		$this->template->load('static','faq',$data);
 	}
+    public function screening()
+	{
+        //$data['rs_klinik'] = $this->M_klinik->getAllKlinik();
+        // $data['rs_faq'] = $this->M_faq->gethistoryscreening();
+		$this->template->load('static','screening');
+	}
 
     public function kalkulator_kehamilan()
 	{

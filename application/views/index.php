@@ -27,6 +27,14 @@
                 </div>
             </div>
         </div>
+        <div class="btn btn-sm col-4 m-1" onclick="window.location='<?=base_url('C_index/screening')?>'">
+            <div class="card-wrapper">
+            <img class="card-img-top rounded mx-auto d-block mt-1" src="<?= base_url()?>/assets/img/screening.png" alt="Card image cap" style ="width : 3rem ; height : 3rem;">
+                <div class="card-body p-1">
+                    <h6 class="card-title">Screening Mandiri</h6>
+                </div>
+            </div>
+        </div>
         <div class="btn btn-sm col-4 m-1" onclick="window.location='<?=base_url('C_index/faq')?>'">
             <div class="card-wrapper">
             <img class="card-img-top rounded mx-auto d-block mt-1" src="<?= base_url()?>/assets/img/faq.png" alt="Card image cap" style ="width : 3rem ; height : 3rem;">
