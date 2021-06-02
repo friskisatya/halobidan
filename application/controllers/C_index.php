@@ -11,6 +11,7 @@ class C_index extends CI_Controller {
         $this->load->model('M_klinik');
         $this->load->model('M_faq');
         $this->load->model('M_artikel');
+        $this->load->model('M_screening');
         //$this->load->model('m_siswa');
     }
 
@@ -58,9 +59,8 @@ class C_index extends CI_Controller {
 	}
     public function screening()
 	{
-        //$data['rs_klinik'] = $this->M_klinik->getAllKlinik();
-        // $data['rs_faq'] = $this->M_faq->gethistoryscreening();
-		$this->template->load('static','screening');
+        $data["rs_data"] = $this->M_screening->getAllScreeningHistory($this->session->userdata('email'));
+		$this->template->load('static','screening',$data);
 	}
 
     public function kalkulator_kehamilan()

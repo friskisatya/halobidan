@@ -4,52 +4,96 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  
 class C_screening extends CI_Controller {
 
-	// function __construct() 
-    // {
-    //     parent::__construct();
-    //     if (($this->session->userdata('email')=="" OR empty($this->session->userdata('email')))OR$this->session->userdata('status_admin')!=1) {
-    //         $this->session->set_userdata("notif_login","<span class='login100-form-title-1'><font size='3px' color='#c80000'>Silahkan Login Sebagai Admin</font></span>");
-    //         redirect('C_login');
-    //     }
-    //     //$this->load->model('M_bidan');
-    //     $this->load->model('M_faq');
-    //     //$this->load->model('m_siswa');
-    // }
-    // mobile-based
-	// public function index()
-	// {
-    //     // $data["rs_faq"] = $this->M_faq->getAllfaq();
-	// 	$this->template->load('static','screening');
-	// }
+	function __construct() 
+    {
+        parent::__construct();
+        if ($this->session->userdata('email')=="" OR empty($this->session->userdata('email'))) {
+            $this->session->set_userdata("notif_login","<span class='login100-form-title-1'><font size='3px' color='#c80000'>Silahkan Login Terlebih Dahulu</font></span>");
+            redirect('C_login');
+        }
+        $this->load->model('M_screening');
+    }
+    
+	public function index()
+	{
+        $data["rs_data"] = $this->M_screening->getAllScreeningHistory($this->session->userdata('email'));
+		$this->template->load('static','screening',$data);
+	}
 
     public function create()
 	{
-		$this->template->load('static','C_screening');
+        $data["rs_screening"] = $this->M_screening->getAllscreening();
+		$this->template->load('static','C_screening',$data);
 	}
 
     public function edit($id)
 	{
         $data["id"]=$id;
-        $data["rs_faq"] = $this->M_faq->getAllfaqById($id);
-		$this->template->load('static','U_faq',$data);
+        $data["rs_screening"] = $this->M_screening->getAllscreening();
+		$this->template->load('static','U_screening',$data);
 	}
 
     public function post_create()
 	{
-        $data = array(
-            // 'id_faq'   =>$this->input->post('kode_faq'),
-            'ask' =>$this->input->post('ask'),
-            'question' =>$this->input->post('question'),
-            'status_faq' =>$this->input->post('status_faq'),
-        );
-        $create = $this->M_faq->create($data);
-        if($create){
-            $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Disimpan</font></span>");
+        $email = $this->session->userdata('email');
+        $check_row = $this->db->query("Select * From t_screening_history where user_id = '$email'")->num_rows();
+        if($check_row < 6){
+            $total_score = 2;
+
+            $index = 0;
+            $total_jawaban_ok=0;
+            $data_detail = array();
+            foreach($this->input->post('pertanyaan') as $pertanyaan){
+                $jawaban = $this->input->post('jawaban')[$index];
+                if($jawaban == "Y"){
+                    $total_jawaban_ok = $total_jawaban_ok +1;
+                }            
+                $index++;
+            }
+            
+            $total_score = $total_score + ($total_jawaban_ok *4);
+            
+            $data = array(
+                'user_id'            =>$this->session->userdata('email'),
+                'tanggal_screening'  =>date("Y-m-d"),
+                'total_score'        =>$total_score,            
+            );
+
+            
+            $create = $this->M_screening->create($data);
+
+            $index_detail = 0;
+            foreach($this->input->post('pertanyaan') as $pertanyaan){
+                array_push($data_detail, array(
+                    'id_screening_history'=>$create,
+                    'id_screening' =>$this->input->post('pertanyaan')[$index_detail],
+                    'jawaban'=>$this->input->post('jawaban')[$index_detail],
+                ));
+                
+                $index_detail++;
+            }
+            $this->db->insert_batch('t_screening_history_detail', $data_detail);
+
+
+
+            if($create){
+                $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Disimpan</font></span>");
+            }else{
+                $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='red'>Data tidak Berhasil disimpan</font></span>");
+            }
         }else{
-            $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='red'>Data tidak Berhasil disimpan</font></span>");
+           
+            $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='red'>Data Sudah mencapai batas maksimal input</font></span>");
+
         }
-        redirect("C_setup_faq/index");
+        redirect("C_screening/preview/".$total_score);
 	}
+
+    public function preview($total_score){
+        //$data["rs_data"] = $this->M_screening->getAllScreeningHistory($this->session->userdata('email'));
+        $data["total_skor"]=$total_score;
+		$this->template->load('static','post_screening',$data);
+    }
     public function create_survei()
 	{
 		$this->template->load('static','C_survei');

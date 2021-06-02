@@ -12,7 +12,18 @@
                 <th class="text_right">Aksi</th>
             </thead>
             <tbody>
-          
+              <?php foreach($rs_data as $data) {
+                $total_skor = $data->total_score;
+                $join = $this->db->query("SELECT * FROM t_maaping_screening WHERE skor <= '$total_skor' and skor_akhir >= '$total_skor'")->result();
+                
+              ?>
+
+              <tr>
+                <td><?= $data->tanggal_screening?></td>
+                <td><?= $join[0]->kel_resiko?></td>
+                <td><button class="btn btn-primary btn-sm" onclick="window.location='<?=base_url('C_screening/edit/'.$data->id_screening_history)?>'">Detail</button></td>
+              </tr>
+              <?php } ?>
             </tbody>
         </table>
     </div>

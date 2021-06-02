@@ -5,9 +5,12 @@
     <div class="table-responsive">
         <table class="table-responsive">
         <tbody>
-            <tr><td colspan="2"><h3 class="mb-0">A.Keadaan Ibu Hamil</h3></td></tr>
-            <?php $index = 1; foreach($rs_screening as $screening){?>
-
+        <tr><td colspan="2"><h3 class="mb-0">A.Keadaan Ibu Hamil</h3></td></tr>
+            <?php $index=1; foreach($rs_screening as $screening){
+                $detail = $this->db->query("SELECT * FROM t_screening_history_detail where id_screening_history = '$id'")->result();
+                foreach($detail as $d){
+                    if($screening->id == $d->id_screening){
+                ?>
                 <?php if($index == 11){?>
                     <tr><td colspan="2"><h3 class="mb-0">B.Kondisi Ibu Hamil</h3></td></tr>
                 <?php } ?>
@@ -16,14 +19,13 @@
                     <td width="30%">
                     <input type="hidden" name="pertanyaan[]" value="<?= $screening->id?>">
                     <select name="jawaban[]" class="form-control" style=" background: rgba(0, 0, 0, 0.2);">
-                        <option value="">Jawaban</option>
-                        <option value="Y">YA</option>
-                        <option value="N">TIDAK</option>
+                        <option value="" <?= $d->jawaban==""?"selected":"" ?>>Jawaban</option>
+                        <option value="Y"  <?= $d->jawaban=="Y"?"selected":"" ?>>YA</option>
+                        <option value="N"  <?= $d->jawaban=="N"?"selected":"" ?>>TIDAK</option>
                     </select>
                     </td>
                 </tr>
-                
-            <?php $index++; } ?>
+            <?php } } $index++;} ?>
         </tbody>
             <!-- <tbody>
           <tr>
@@ -55,9 +57,9 @@
     </div>
 </div>
 </div>
-        <div class="container text-center">
-            <button type="submit" class="btn btn-primary">Proses</button>
-        </div>
+        <!-- <div class="container text-center">
+            <button type="button" onclick="window.location='<?=base_url('C_screening/preview/').$bid->id_bidan?>' class="btn btn-primary">Preview</button>
+        </div> -->
 </form>
 <br>
 <br>
