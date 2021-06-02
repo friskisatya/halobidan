@@ -84,7 +84,7 @@ class C_screening extends CI_Controller {
         }else{
            
             $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='red'>Data Sudah mencapai batas maksimal input</font></span>");
-
+            redirect("C_screening/");
         }
         redirect("C_screening/preview/".$total_score);
 	}

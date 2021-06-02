@@ -1,11 +1,11 @@
 <div class="container">
-<h6 class="title float-right btn-sm btn-primary ml-1" onclick="window.history.back();"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
+<h6 class="title float-right btn-sm btn-primary ml-1" onclick="window.location='<?=base_url('C_screening')?>'"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
     <h4 class="title"><i class="fas fa-columns"></i>&nbsp Screening Mandiri</h4>
     <form action="<?=base_url('C_screening/post_create')?>" method="POST">
     <div class="table-responsive">
         <table class="table-responsive">
         <tbody>
-        <tr><td colspan="2"><h3 class="mb-0">A.Keadaan Ibu Hamil</h3></td></tr>
+            <tr><td colspan="2"><h3 class="mb-0">A.Keadaan Ibu Hamil</h3></td></tr>
             <?php $index=1; foreach($rs_screening as $screening){
                 $detail = $this->db->query("SELECT * FROM t_screening_history_detail where id_screening_history = '$id'")->result();
                 foreach($detail as $d){

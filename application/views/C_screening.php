@@ -1,5 +1,5 @@
 <div class="container">
-<h6 class="title float-right btn-sm btn-primary ml-1" onclick="window.history.back();"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
+<h6 class="title float-right btn-sm btn-primary ml-1" onclick="window.location='<?=base_url('C_screening')?>'"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
     <h4 class="title"><i class="fas fa-columns"></i>&nbsp Screening Mandiri</h4>
     <form action="<?=base_url('C_screening/post_create')?>" method="POST">
     <div class="table-responsive">
@@ -15,7 +15,7 @@
                     <td><p class="description"><?= $screening->pertanyaan_screening?></p></td>
                     <td width="30%">
                     <input type="hidden" name="pertanyaan[]" value="<?= $screening->id?>">
-                    <select name="jawaban[]" class="form-control" style=" background: rgba(0, 0, 0, 0.2);">
+                    <select name="jawaban[]" class="form-control" style=" background: rgba(0, 0, 0, 0.2);" required>
                         <option value="">Jawaban</option>
                         <option value="Y">YA</option>
                         <option value="N">TIDAK</option>
