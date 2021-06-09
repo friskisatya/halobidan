@@ -72,6 +72,8 @@ class C_screening extends CI_Controller {
                 
                 $index_detail++;
             }
+
+            // var_dump($data_detail);die;
             $this->db->insert_batch('t_screening_history_detail', $data_detail);
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2021 at 06:13 PM
+-- Generation Time: Jun 09, 2021 at 05:36 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -212,17 +212,24 @@ CREATE TABLE `t_login` (
   `password` varchar(500) NOT NULL,
   `status` varchar(500) NOT NULL,
   `location` varchar(500) NOT NULL,
-  `status_admin` int(11) NOT NULL
+  `status_admin` int(11) NOT NULL,
+  `tempat_lahir` varchar(2000) NOT NULL,
+  `tgl_lahir` date DEFAULT NULL,
+  `bln_kehamilan` int(11) NOT NULL,
+  `agama` varchar(2000) NOT NULL,
+  `pendidikan_terakhir` varchar(2000) NOT NULL,
+  `gol_darah` varchar(10) NOT NULL,
+  `pekerjaan` varchar(2000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `t_login`
 --
 
-INSERT INTO `t_login` (`id`, `nama`, `alamat`, `no_telp`, `email`, `password`, `status`, `location`, `status_admin`) VALUES
-(1, 'friski', 'Jakarta', '081212312312', 'friskisatya@mail.com', '202cb962ac59075b964b07152d234b70', '1', 'Jakarta', 1),
-(2, 'friski', '', '82130327606', 'friskisatya5@gmail.com', '202cb962ac59075b964b07152d234b70', '1', '', 1),
-(4, 'friski', '', '82130327606', 'test@mail.com', '202cb962ac59075b964b07152d234b70', '1', '', 0);
+INSERT INTO `t_login` (`id`, `nama`, `alamat`, `no_telp`, `email`, `password`, `status`, `location`, `status_admin`, `tempat_lahir`, `tgl_lahir`, `bln_kehamilan`, `agama`, `pendidikan_terakhir`, `gol_darah`, `pekerjaan`) VALUES
+(1, 'friski', 'Jakarta', '081212312312', 'friskisatya@mail.com', '202cb962ac59075b964b07152d234b70', '1', 'Jakarta', 1, '', NULL, 0, '', '', '', ''),
+(2, 'friski', '', '82130327606', 'friskisatya5@gmail.com', '202cb962ac59075b964b07152d234b70', '1', '', 1, '', NULL, 0, '', '', '', ''),
+(4, 'friski', '', '82130327606', 'test@mail.com', '202cb962ac59075b964b07152d234b70', '1', '', 0, '', '1998-06-08', 1, 'Islam', 'SMP', 'A', 'Karyawan');
 
 -- --------------------------------------------------------
 
@@ -249,6 +256,31 @@ INSERT INTO `t_maaping_screening` (`skor`, `skor_akhir`, `kel_resiko`, `rujukan`
 (0, 5, 'RENDAH', 'TIDAK', 'BPM', 'BIDAN', 'BIDAN', 'BAKSOKUDA'),
 (6, 11, 'TINGGI', 'YA', 'PONED/RS', 'BIDAN/DOKTER', 'BIDAN/DOKTER', 'BAKSOKUDA + PERSIAPAN PENDONOR DARAH'),
 (12, 99999, 'SANGAT TINGGI', 'YA', 'RS', 'DOKTER', 'DOKTER', 'BAKSOKUDA + PERSIAPAN TINDAKAN OPERASI');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_riwayat_checkup`
+--
+
+CREATE TABLE `t_riwayat_checkup` (
+  `id` int(11) NOT NULL,
+  `tgl_checkup` date NOT NULL,
+  `email` varchar(2000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_riwayat_checkup`
+--
+
+INSERT INTO `t_riwayat_checkup` (`id`, `tgl_checkup`, `email`) VALUES
+(1, '2021-06-01', 'test@mail.com'),
+(2, '2021-06-02', 'test@mail.com'),
+(3, '2021-06-03', 'test@mail.com'),
+(4, '2021-06-04', 'test@mail.com'),
+(5, '2021-06-04', 'test@mail.com'),
+(6, '2021-06-09', 'test@mail.com'),
+(7, '2021-06-09', 'test@mail.com');
 
 -- --------------------------------------------------------
 
@@ -310,11 +342,12 @@ CREATE TABLE `t_screening_history` (
 --
 
 INSERT INTO `t_screening_history` (`id_screening_history`, `user_id`, `tanggal_screening`, `total_score`) VALUES
-(1, 'test@mail.com', NULL, 10),
-(3, 'test@mail.com', '2021-06-02', 6),
-(4, 'test@mail.com', '2021-06-02', 10),
-(5, 'test@mail.com', '2021-06-02', 6),
-(6, 'test@mail.com', '2021-06-02', 2);
+(11, 'test@mail.com', '2021-06-03', 98),
+(12, 'test@mail.com', '2021-06-03', 98),
+(13, 'test@mail.com', '2021-06-03', 98),
+(14, 'test@mail.com', '2021-06-03', 98),
+(15, 'test@mail.com', '2021-06-03', 98),
+(16, 'test@mail.com', '2021-06-03', 98);
 
 -- --------------------------------------------------------
 
@@ -334,131 +367,56 @@ CREATE TABLE `t_screening_history_detail` (
 --
 
 INSERT INTO `t_screening_history_detail` (`id_screening_history_detail`, `id_screening_history`, `id_screening`, `jawaban`) VALUES
-(1, 2, 1, ''),
-(2, 2, 2, ''),
-(3, 2, 3, 'Y'),
-(4, 2, 4, ''),
-(5, 2, 5, ''),
-(6, 2, 6, 'N'),
-(7, 2, 7, ''),
-(8, 2, 8, 'Y'),
-(9, 2, 9, ''),
-(10, 2, 10, ''),
-(11, 2, 11, ''),
-(12, 2, 12, ''),
-(13, 2, 13, ''),
-(14, 2, 14, ''),
-(15, 2, 15, ''),
-(16, 2, 16, ''),
-(17, 2, 17, ''),
-(18, 2, 18, ''),
-(19, 2, 19, ''),
-(20, 2, 20, ''),
-(21, 2, 21, ''),
-(22, 2, 22, ''),
-(23, 2, 23, ''),
-(24, 2, 24, ''),
-(25, 2, 25, ''),
-(26, 3, 1, ''),
-(27, 3, 2, 'Y'),
-(28, 3, 3, ''),
-(29, 3, 4, ''),
-(30, 3, 5, ''),
-(31, 3, 6, ''),
-(32, 3, 7, ''),
-(33, 3, 8, ''),
-(34, 3, 9, ''),
-(35, 3, 10, ''),
-(36, 3, 11, ''),
-(37, 3, 12, ''),
-(38, 3, 13, ''),
-(39, 3, 14, ''),
-(40, 3, 15, ''),
-(41, 3, 16, ''),
-(42, 3, 17, ''),
-(43, 3, 18, ''),
-(44, 3, 19, ''),
-(45, 3, 20, ''),
-(46, 3, 21, ''),
-(47, 3, 22, ''),
-(48, 3, 23, ''),
-(49, 3, 24, ''),
-(50, 3, 25, ''),
-(51, 4, 1, 'Y'),
-(52, 4, 2, ''),
-(53, 4, 3, 'Y'),
-(54, 4, 4, ''),
-(55, 4, 5, ''),
-(56, 4, 6, ''),
-(57, 4, 7, ''),
-(58, 4, 8, ''),
-(59, 4, 9, ''),
-(60, 4, 10, ''),
-(61, 4, 11, ''),
-(62, 4, 12, ''),
-(63, 4, 13, ''),
-(64, 4, 14, ''),
-(65, 4, 15, ''),
-(66, 4, 16, ''),
-(67, 4, 17, ''),
-(68, 4, 18, ''),
-(69, 4, 19, ''),
-(70, 4, 20, ''),
-(71, 4, 21, ''),
-(72, 4, 22, ''),
-(73, 4, 23, ''),
-(74, 4, 24, ''),
-(75, 4, 25, ''),
-(76, 5, 1, 'Y'),
-(77, 5, 2, ''),
-(78, 5, 3, ''),
-(79, 5, 4, ''),
-(80, 5, 5, ''),
-(81, 5, 6, ''),
-(82, 5, 7, ''),
-(83, 5, 8, ''),
-(84, 5, 9, ''),
-(85, 5, 10, ''),
-(86, 5, 11, ''),
-(87, 5, 12, ''),
-(88, 5, 13, ''),
-(89, 5, 14, ''),
-(90, 5, 15, ''),
-(91, 5, 16, ''),
-(92, 5, 17, ''),
-(93, 5, 18, ''),
-(94, 5, 19, ''),
-(95, 5, 20, ''),
-(96, 5, 21, ''),
-(97, 5, 22, ''),
-(98, 5, 23, ''),
-(99, 5, 24, ''),
-(100, 5, 25, ''),
-(101, 6, 1, ''),
-(102, 6, 2, ''),
-(103, 6, 3, ''),
-(104, 6, 4, ''),
-(105, 6, 5, ''),
-(106, 6, 6, ''),
-(107, 6, 7, ''),
-(108, 6, 8, ''),
-(109, 6, 9, ''),
-(110, 6, 10, ''),
-(111, 6, 11, ''),
-(112, 6, 12, ''),
-(113, 6, 13, ''),
-(114, 6, 14, ''),
-(115, 6, 15, ''),
-(116, 6, 16, ''),
-(117, 6, 17, ''),
-(118, 6, 18, ''),
-(119, 6, 19, ''),
-(120, 6, 20, ''),
-(121, 6, 21, ''),
-(122, 6, 22, ''),
-(123, 6, 23, ''),
-(124, 6, 24, ''),
-(125, 6, 25, '');
+(126, 11, 1, 'Y'),
+(127, 11, 2, 'Y'),
+(128, 11, 3, 'Y'),
+(129, 11, 4, 'Y'),
+(130, 11, 5, 'Y'),
+(131, 11, 6, 'Y'),
+(132, 11, 7, 'Y'),
+(133, 11, 8, 'Y'),
+(134, 11, 9, 'Y'),
+(135, 11, 10, 'Y'),
+(136, 11, 11, 'Y'),
+(137, 11, 12, 'Y'),
+(138, 11, 13, 'Y'),
+(139, 11, 14, 'Y'),
+(140, 11, 15, 'Y'),
+(141, 11, 16, 'Y'),
+(142, 11, 17, 'Y'),
+(143, 11, 18, 'Y'),
+(144, 11, 19, 'Y'),
+(145, 11, 20, 'Y'),
+(146, 11, 21, 'Y'),
+(147, 11, 22, 'Y'),
+(148, 11, 23, 'Y'),
+(149, 11, 24, 'Y'),
+(150, 11, 25, 'N'),
+(151, 16, 1, 'N'),
+(152, 16, 2, 'Y'),
+(153, 16, 3, 'Y'),
+(154, 16, 4, 'Y'),
+(155, 16, 5, 'Y'),
+(156, 16, 6, 'Y'),
+(157, 16, 7, 'Y'),
+(158, 16, 8, 'Y'),
+(159, 16, 9, 'Y'),
+(160, 16, 10, 'Y'),
+(161, 16, 11, 'Y'),
+(162, 16, 12, 'Y'),
+(163, 16, 13, 'Y'),
+(164, 16, 14, 'Y'),
+(165, 16, 15, 'Y'),
+(166, 16, 16, 'Y'),
+(167, 16, 17, 'Y'),
+(168, 16, 18, 'Y'),
+(169, 16, 19, 'Y'),
+(170, 16, 20, 'Y'),
+(171, 16, 21, 'Y'),
+(172, 16, 22, 'Y'),
+(173, 16, 23, 'Y'),
+(174, 16, 24, 'Y'),
+(175, 16, 25, 'Y');
 
 -- --------------------------------------------------------
 
@@ -497,6 +455,24 @@ INSERT INTO `t_survei` (`id_survei`, `head`, `body`) VALUES
 (18, 'Tanda Bahaya Pada kehamilan', 'Segera bawa ibu hamil ke fasilitas kesehatan bila di jumpai keluhan atau tanda tanda seperti :\r\n1.muntah terus dan tak mau makan\r\n2.demam tinggi\r\n3.bengkak kaki,tangan,dan wajah atau sakit kepala di sertai kejang\r\n4.janin dirasakan kurang bergerak dibanding sebelumnya\r\n5.pendarahan pada hamil muda dan hamil tua\r\n6.air ketuban keluar sebelum waktunya'),
 (19, 'masalah lain pada masa kehamilan', 'Apabila mengalami keluhan seperti ini, segera bawa ibu hamil ke fasilitas kesehatan didampingi suami atau keluarga\r\n1.demam,mengigil dan berkeringat. bila ibu berada di daerah endermis malaria,menujukan adanya gejala malaria\r\n2.terasa sakit pada saat kencing atau keluar keputihan atau gatal-gatal di daerah kemaluan\r\n3.batuk lama (lebih dari 2 minggu)\r\n4.jantung berdebar-debar atau nyeri di dada\r\n5.diare berulang\r\n6.sulit tidur dan cemas berlebihan'),
 (20, 'Tanda Awal Persalinan', '1.Perut mulas-mulas yang teratur, timbulnya semakin sering dan semakin lama\r\n2.keluar lendir bercampur darah dari jalan lahir atau keluar cairan ketuban dari jalan lahir\r\njika muncul salah satu tanda di atas ini, suami atau keluarga SEGERA BAWA ibu hamil ke fasilitas kesehatan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_tentang`
+--
+
+CREATE TABLE `t_tentang` (
+  `id_tentang` int(11) NOT NULL,
+  `tentang` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_tentang`
+--
+
+INSERT INTO `t_tentang` (`id_tentang`, `tentang`) VALUES
+(1, 'Tujuan aplikasi ini dibangun adalah untuk memenuhi tugas skripsi perkuliahan dan untuk masyarakat luas dalam ruang lingkup dikhususkan untuk ibu yang sedang mengandung agar dapat mengetahui informasi terkait fasilitas kesehatan yang terdekat                    ');
 
 --
 -- Indexes for dumped tables
@@ -551,6 +527,12 @@ ALTER TABLE `t_maaping_screening`
   ADD PRIMARY KEY (`skor`);
 
 --
+-- Indexes for table `t_riwayat_checkup`
+--
+ALTER TABLE `t_riwayat_checkup`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `t_screening`
 --
 ALTER TABLE `t_screening`
@@ -573,6 +555,12 @@ ALTER TABLE `t_screening_history_detail`
 --
 ALTER TABLE `t_survei`
   ADD PRIMARY KEY (`id_survei`);
+
+--
+-- Indexes for table `t_tentang`
+--
+ALTER TABLE `t_tentang`
+  ADD PRIMARY KEY (`id_tentang`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -621,6 +609,12 @@ ALTER TABLE `t_login`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `t_riwayat_checkup`
+--
+ALTER TABLE `t_riwayat_checkup`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `t_screening`
 --
 ALTER TABLE `t_screening`
@@ -630,19 +624,25 @@ ALTER TABLE `t_screening`
 -- AUTO_INCREMENT for table `t_screening_history`
 --
 ALTER TABLE `t_screening_history`
-  MODIFY `id_screening_history` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_screening_history` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `t_screening_history_detail`
 --
 ALTER TABLE `t_screening_history_detail`
-  MODIFY `id_screening_history_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `id_screening_history_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
 
 --
 -- AUTO_INCREMENT for table `t_survei`
 --
 ALTER TABLE `t_survei`
   MODIFY `id_survei` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `t_tentang`
+--
+ALTER TABLE `t_tentang`
+  MODIFY `id_tentang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

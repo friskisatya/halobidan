@@ -49,7 +49,7 @@
                         <p class="text-center text-capitalize"><?=$bidan->nama_bidan?></p>
                     </td>
                     <td>
-                    <button onclick="f_telp_bidan('<?=$bidan->telp_bidan?>')" class="btn-xm btn-primary">Chat</button>
+                    <button onclick="f_telp_bidan('<?=$bidan->telp_bidan?>','<?=$bidan->nama_bidan?>')" class="btn-xm btn-primary">Chat</button>
                     </td>
                 </tr>
                 <?php } ?>
@@ -60,8 +60,17 @@
 </div>
 
 <script>
-function f_telp_bidan(telp){
-    window.open("https://wa.me/"+telp+"?text=Saya%20ingin%20bertanya%20tentang%20rumah%20yang%20dijual");
+function f_telp_bidan(telp,nama_dokter){
+    $.ajax({
+         type: "POST",
+         url: "<?=base_url()?>" + "C_index/post_riwayat_checkup_wa", 
+         data: {},
+         dataType: "text", 
+         success: 
+              function(data){
+                window.open("https://wa.me/"+telp+"?text=Halo+dokter+"+nama_dokter+"%2C+saya+<?= $this->session->userdata('nama') ?>+mau+konsultasi+terkait+kehamilan+saya");
+              }
+          });
 }
 </script>
 <!-- end of article -->

@@ -11,6 +11,7 @@ class C_index extends CI_Controller {
         $this->load->model('M_klinik');
         $this->load->model('M_faq');
         $this->load->model('M_artikel');
+        $this->load->model('M_form_informasi_hamil');
         $this->load->model('M_screening');
         //$this->load->model('m_siswa');
     }
@@ -59,6 +60,12 @@ class C_index extends CI_Controller {
 	}
     public function screening()
 	{
+        $email = $this->session->userdata('email');
+        $cek_informasi = $this->db->query("SELECT * FROM t_login where email = '$email' ")->result();
+        if($cek_informasi[0]->tempat_lahir ==""){
+            $this->session->set_userdata("notif_login","<span class='login100-form-title-1'><font size='3px' color='#c80000'>Silahkan lengkapi form ini terlebih dahulu</font></span>");
+            redirect('C_form_profile_hamil');
+        }
         $data["rs_data"] = $this->M_screening->getAllScreeningHistory($this->session->userdata('email'));
 		$this->template->load('static','screening',$data);
 	}
@@ -121,4 +128,42 @@ class C_index extends CI_Controller {
         $data['rs_klinik'] = $this->M_klinik->getAllKlinikById($id_klinik);
 		$this->template->load('static','detail_klinik',$data);
 	}
+
+    public function post_riwayat_checkup()
+	{
+
+        $email = $this->session->userdata('email');
+        $data = array(
+            // 'id_faq'   =>$this->input->post('kode_faq'),
+            'tgl_checkup' =>$this->input->post('tgl_checkup'),
+            'email' =>$email,
+        );
+        $create = $this->M_form_informasi_hamil->create_riwayat($data);
+        if($create){
+            $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Disimpan</font></span>");
+        }else{
+            $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='red'>Data tidak Berhasil disimpan</font></span>");
+        }
+        redirect("C_profile_kehamilan");
+	}
+
+    public function post_riwayat_checkup_wa()
+	{
+
+        $email = $this->session->userdata('email');
+        $data = array(
+            // 'id_faq'   =>$this->input->post('kode_faq'),
+            'tgl_checkup' =>date("Y-m-d"),
+            'email' =>$email,
+        );
+        $create = $this->M_form_informasi_hamil->create_riwayat($data);
+        if($create){
+            $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='green'>Data Berhasil Disimpan</font></span>");
+        }else{
+            $this->session->set_userdata("notif_insert","<span class='login100-form-title-1'><font size='3px' color='red'>Data tidak Berhasil disimpan</font></span>");
+        }
+        echo json_encode();
+	}
+
+    
 }
