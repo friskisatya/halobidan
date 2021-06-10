@@ -55,7 +55,7 @@
             <div class="row">
                 
                 <div class="col-6 text-center">
-                <input required type="date" min="<?= $rs_riwayat[3]->tgl_checkup??$rs_riwayat[2]->tgl_checkup??$rs_riwayat[1]->tgl_checkup??$rs_riwayat[0]->tgl_checkup?>" name="tgl_checkup" class="form-control" id="">
+                <input required type="date" min="<?= $rs_riwayat[3]->tgl_checkup??$rs_riwayat[2]->tgl_checkup??$rs_riwayat[1]->tgl_checkup??$rs_riwayat[0]->tgl_checkup??""?>" name="tgl_checkup" class="form-control" id="">
                 </div>
                 <div class="col-6 text-center">
                 <button class="btn btn-primary btn-small">Simpan</button>

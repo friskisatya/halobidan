@@ -20,7 +20,7 @@ class C_profile_kehamilan extends CI_Controller {
 	{
         $email = $this->session->userdata('email');
         $rs_data = $this->db->query("SELECT * FROM t_login where email ='$email'")->result();
-        $birthDate = new DateTime($rs_data[0]->tgl_lahir);
+        $birthDate = new DateTime($rs_data[0]->tgl_lahir??"");
         $today = new DateTime("today");
         // if ($birthDate > $today) { 
         //     exit("0 tahun 0 bulan 0 hari");
