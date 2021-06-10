@@ -86,9 +86,11 @@ class C_index extends CI_Controller {
             //echo date_format($hpt,"Y-m-d");die
             // $lama_siklus = $this->input->post('siklus_haid')-21;
 
-            $total = 283;
+            $total = 7;
+            $total2 = 9;
             $data["tgl_input"]=$this->input->post('tanggal_haid');
-            $data["hpt"] = date_add($hpt,date_interval_create_from_date_string($total." days"));
+            $a = date_add($hpt,date_interval_create_from_date_string($total." days"));
+            $data["hpt"] = date_add($a,date_interval_create_from_date_string($total2." month"));
             //echo date_format($date,"Y-m-d");
             
             // $data["hp"] = date_add($hp,date_interval_create_from_date_string("14 days"));
