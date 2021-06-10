@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2021 at 05:36 PM
+-- Generation Time: Jun 10, 2021 at 05:03 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -459,6 +459,45 @@ INSERT INTO `t_survei` (`id_survei`, `head`, `body`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `t_survei_history`
+--
+
+CREATE TABLE `t_survei_history` (
+  `id` int(11) NOT NULL,
+  `id_survei` int(11) NOT NULL,
+  `jawaban` varchar(10) NOT NULL,
+  `email` varchar(2000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t_survei_history`
+--
+
+INSERT INTO `t_survei_history` (`id`, `id_survei`, `jawaban`, `email`) VALUES
+(21, 1, 'N', 'test@mail.com'),
+(22, 2, 'N', 'test@mail.com'),
+(23, 3, 'Y', 'test@mail.com'),
+(24, 4, 'Y', 'test@mail.com'),
+(25, 5, 'Y', 'test@mail.com'),
+(26, 6, 'Y', 'test@mail.com'),
+(27, 7, 'Y', 'test@mail.com'),
+(28, 8, 'Y', 'test@mail.com'),
+(29, 9, 'Y', 'test@mail.com'),
+(30, 10, 'Y', 'test@mail.com'),
+(31, 11, 'Y', 'test@mail.com'),
+(32, 12, 'Y', 'test@mail.com'),
+(33, 13, 'Y', 'test@mail.com'),
+(34, 14, 'Y', 'test@mail.com'),
+(35, 15, 'Y', 'test@mail.com'),
+(36, 16, 'Y', 'test@mail.com'),
+(37, 17, 'Y', 'test@mail.com'),
+(38, 18, 'Y', 'test@mail.com'),
+(39, 19, 'Y', 'test@mail.com'),
+(40, 20, 'Y', 'test@mail.com');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `t_tentang`
 --
 
@@ -557,6 +596,12 @@ ALTER TABLE `t_survei`
   ADD PRIMARY KEY (`id_survei`);
 
 --
+-- Indexes for table `t_survei_history`
+--
+ALTER TABLE `t_survei_history`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `t_tentang`
 --
 ALTER TABLE `t_tentang`
@@ -637,6 +682,12 @@ ALTER TABLE `t_screening_history_detail`
 --
 ALTER TABLE `t_survei`
   MODIFY `id_survei` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `t_survei_history`
+--
+ALTER TABLE `t_survei_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `t_tentang`
