@@ -81,35 +81,35 @@ class C_index extends CI_Controller {
 
             $hpt=date_create($this->input->post('tanggal_haid'));
             //var_dump($hpt);die;
-            $hp=date_create($this->input->post('tanggal_haid'));
+            // $hp=date_create($this->input->post('tanggal_haid'));
             //date_add($date,date_interval_create_from_date_string("40 days"));
             //echo date_format($hpt,"Y-m-d");die
-            $lama_siklus = $this->input->post('siklus_haid')-21;
+            // $lama_siklus = $this->input->post('siklus_haid')-21;
 
-            $total = $lama_siklus + 270;
+            $total = 283;
             $data["tgl_input"]=$this->input->post('tanggal_haid');
             $data["hpt"] = date_add($hpt,date_interval_create_from_date_string($total." days"));
             //echo date_format($date,"Y-m-d");
             
-            $data["hp"] = date_add($hp,date_interval_create_from_date_string("14 days"));
+            // $data["hp"] = date_add($hp,date_interval_create_from_date_string("14 days"));
 
-            $sekarang = new DateTime();
+            //$sekarang = new DateTime();
 
-            $perbedaan = $data["hp"]->diff($sekarang);
+            //$perbedaan = $data["hp"]->diff($sekarang);
 
             //$uj = date_add($hpt,date_interval_create_from_date_string("14 days"))
 
-            $sekarang = new DateTime();
+            //$sekarang = new DateTime();
 
-            $uj = $data["hp"]->diff($sekarang);
+            // $uj = $data["hp"]->diff($sekarang);
 
-            $uj_minggu_ex1 = explode(".",($uj->days/7));  
+            // $uj_minggu_ex1 = explode(".",($uj->days/7));  
             
-            $uj_minggu_ex2 = explode(",",$uj_minggu_ex1[0]);  
+            // $uj_minggu_ex2 = explode(",",$uj_minggu_ex1[0]);  
             //var_dump($uj_minggu_ex2[0]);die;
-            $data["uj_minggu"] = $uj_minggu_ex2[0];  
+            // $data["uj_minggu"] = $uj_minggu_ex2[0];  
 
-            $data["uj_hari"] = $uj->days % 7; 
+            // $data["uj_hari"] = $uj->days % 7; 
 
 
             //var_dump($data["hp"]);die;

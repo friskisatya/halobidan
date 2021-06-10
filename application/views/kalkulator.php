@@ -12,8 +12,8 @@
             <input required type="date" name="tanggal_haid" id="tanggal_haid" class="form-control">
             </div>
             <div class="form-group">
-            <label for="siklus_haid">Siklus Haid</label>
-            <input required type="number" name="siklus_haid"  id="siklus_haid" class="form-control" max="35" min="21">
+            <!-- <label for="siklus_haid">Siklus Haid</label>
+            <input required type="number" name="siklus_haid"  id="siklus_haid" class="form-control" max="35" min="21"> -->
             <div class="form-group">
             </div>
 
@@ -22,8 +22,8 @@
         <hr>
         <p class="description">Hasil Perkiraan</p>
         Berdasarkan HPHT anda yaitu <?= $tgl_input??"{tanggal input}"?> maka dapat di perkirakan sebagai berikut :<br>
-        Perkiraan Pembuahan : <?=$hp==""?"{tanggal pembuahan}":date_format($hp,"Y-m-d")?><br>
-        Perkiraan Usia Janin : <?=$uj_minggu??"0"?> Minggu, <?=$uj_hari??"0"?> Hari   <br>
+        <!-- Perkiraan Pembuahan : <?=$hp==""?"{tanggal pembuahan}":date_format($hp,"Y-m-d")?><br> -->
+        <!-- Perkiraan Usia Janin : <?=$uj_minggu??"0"?> Minggu, <?=$uj_hari??"0"?> Hari   <br> -->
         Perkiraan lahir : <?=$hpt==""?"{tanggal perkiraan lahir}":date_format($hpt,"Y-m-d")?><br>
         Asumsi ini mengakibatkan metode ini mempunyai tingkat kesalahan plus minus 2 minggu.
         
