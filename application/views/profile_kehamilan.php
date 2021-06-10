@@ -66,7 +66,7 @@
 
             <div class="row">
                 <div class="col-6">
-                    <a href="<?=base_url('C_screening/survei')?>" class="btn btn-primary btn-round btn-sm">
+                    <a href="<?=base_url('C_screening/create_survei')?>" class="btn btn-primary btn-round btn-sm">
                         Ambil Survei Kehamilan
                     </a>
                 </div>

@@ -1,6 +1,6 @@
 <div class="container">
-<h6 class="title float-right btn-sm btn-primary ml-1" onclick="window.history.back();"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
-<h6 class="title float-right btn-sm btn-primary" onclick="window.location='<?=base_url('C_screening/create')?>'"><i class="fas fa-plus"></i>&nbsp Survei</h6>
+<h6 class="title float-right btn-sm btn-primary ml-1" onclick="window.location='<?=base_url('C_index')?>'"><i class="fas fa-arrow-left"></i>&nbsp Back</h6>
+<h6 class="title float-right btn-sm btn-primary" onclick="window.location='<?=base_url('C_screening/create_survei')?>'"><i class="fas fa-plus"></i>&nbsp Survei</h6>
 <h4 class="title"><i class="fas fa-columns"></i>&nbsp Survei Persiapan Kehamilan</h4><br>
 <?= $this->session->userdata("notif_insert");$this->session->unset_userdata("notif_insert")?>
 <?= $this->session->userdata("notif_delete");$this->session->unset_userdata("notif_delete")?>

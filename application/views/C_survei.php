@@ -2,24 +2,31 @@
   <h6 class="title float-right btn-sm btn-primary ml-1" onclick="window.history.back();"><i
       class="fas fa-arrow-left"></i>&nbsp Back</h6>
   <h4 class="title"><i class="fas fa-columns"></i>&nbsp Survei Kehamilan</h4>
-  <form action="<?=base_url('C_setup_faq/post_create')?>" method="POST">
+  <form action="<?=base_url('C_screening/post_create_survei')?>" method="POST">
     <div class="card-body">
+
+        <?php foreach($rs_data as $a){?>
         <div class="row">
             <div class="col-8">
     
-            <h6 class="text-justify">Pengukuran Tinggi Badan Cukup 1 Kali</h6>    
+            <h6 class="text-justify"><?= $a->head?></h6>    
             <p class="text-description">
-                Bila Tinggi Badan < 145 CM , Maka faktor resiko panggul sempit, kemungkinan sulit melahirkan secara normal
+                <?= $a->body?>
             </p>
             </div>
             <div class="col-4 m-auto">
-
-       <input type="radio" name="answer" id="answer1" value="Y">Ya
-       <input type="radio" name="answer" id="answer2" value="N">Tidak
-          </div>
+            <input type="hidden" name="pertanyaan[]" value="<?= $a->id_survei ?>">
+            <select required name="jawaban[]" id="" class="form-control">
+              <option value="" <?= $a->jawaban==""?"selected":""?> >Pilih Jawaban</option>
+              <option value="Y" <?= $a->jawaban=="Y"?"selected":""?>>Ya</option>
+              <option value="N" <?= $a->jawaban=="N"?"selected":""?>>Tidak</option>
+            </select>
+            </div>
 
         
         </div>
+        <hr>
+        <?php } ?>
       
     </div>
 </div>
