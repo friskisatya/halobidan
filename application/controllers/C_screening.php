@@ -109,6 +109,28 @@ class C_screening extends CI_Controller {
         ")->result();
 		$this->template->load('static','C_survei',$data);
 	}
+
+    public function download()
+	{
+        $email = $this->session->userdata('email');
+        $data["rs_data"] = $this->db->query("select * From t_login where email ='$email'")->result();
+        $email = $this->session->userdata("email");
+        $data["rs_data2"] = $this->db->query("
+        SELECT 
+        (select jawaban from t_survei_history b where b.email ='$email' and b.id_survei = a.id_survei ) as jawaban,
+        a.id_survei,
+        a.head,
+        a.body 
+        FROM t_survei a
+        ")->result();
+
+        $mpdf = new \Mpdf\Mpdf();
+        $html = $this->load->view('survei_download',$data,true);
+        $mpdf->WriteHTML($html);
+        //$mpdf->Output('Profile kehamilan.pdf'); // buka dengan browser
+        $mpdf->Output('Survei Download.pdf','D'); // ini akan mendownload file dengan nama alaiakbar_mPDF
+    }
+
     public function survei()
 	{
 		$this->template->load('static','survei');

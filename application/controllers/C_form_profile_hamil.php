@@ -61,6 +61,17 @@ class C_form_profile_hamil extends CI_Controller {
         redirect("C_form_profile_hamil");
 	}
 
+    public function download()
+	{
+        $email = $this->session->userdata('email');
+        $data["rs_data"] = $this->db->query("select * From t_login where email ='$email'")->result();
+        $mpdf = new \Mpdf\Mpdf();
+        $html = $this->load->view('profile_download',$data,true);
+        $mpdf->WriteHTML($html);
+        //$mpdf->Output('Profile kehamilan.pdf'); // buka dengan browser
+        $mpdf->Output('Profile kehamilan.pdf','D'); // ini akan mendownload file dengan nama alaiakbar_mPDF
+    }
+
     // public function post_edit($id)
 	// {
     //     $where = array('id_faq'=>$id);

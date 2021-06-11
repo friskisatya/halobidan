@@ -93,9 +93,15 @@
             </div> -->
             
         </div>
-        <div class="container text-center">
+        <div class="row">
+        <div class="container text-center col-6">
             <button type="submit" class="btn btn-primary">Lengkapi</button>
         </div>
+        <div class="container text-center col-6">
+            <button type="button" onclick="window.location='<?=base_url('C_form_profile_hamil/download')?>'" class="btn btn-primary">Download</button>
+        </div>
+        </div>
+        
 </div>
 </form>
 <!-- end of article -->
