@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2021 at 05:03 PM
+-- Generation Time: Jun 13, 2021 at 07:52 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -219,17 +219,19 @@ CREATE TABLE `t_login` (
   `agama` varchar(2000) NOT NULL,
   `pendidikan_terakhir` varchar(2000) NOT NULL,
   `gol_darah` varchar(10) NOT NULL,
-  `pekerjaan` varchar(2000) NOT NULL
+  `pekerjaan` varchar(2000) NOT NULL,
+  `status_verif` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `t_login`
 --
 
-INSERT INTO `t_login` (`id`, `nama`, `alamat`, `no_telp`, `email`, `password`, `status`, `location`, `status_admin`, `tempat_lahir`, `tgl_lahir`, `bln_kehamilan`, `agama`, `pendidikan_terakhir`, `gol_darah`, `pekerjaan`) VALUES
-(1, 'friski', 'Jakarta', '081212312312', 'friskisatya@mail.com', '202cb962ac59075b964b07152d234b70', '1', 'Jakarta', 1, '', NULL, 0, '', '', '', ''),
-(2, 'friski', '', '82130327606', 'friskisatya5@gmail.com', '202cb962ac59075b964b07152d234b70', '1', '', 1, '', NULL, 0, '', '', '', ''),
-(4, 'friski', '', '82130327606', 'test@mail.com', '202cb962ac59075b964b07152d234b70', '1', '', 0, '', '1998-06-08', 1, 'Islam', 'SMP', 'A', 'Karyawan');
+INSERT INTO `t_login` (`id`, `nama`, `alamat`, `no_telp`, `email`, `password`, `status`, `location`, `status_admin`, `tempat_lahir`, `tgl_lahir`, `bln_kehamilan`, `agama`, `pendidikan_terakhir`, `gol_darah`, `pekerjaan`, `status_verif`) VALUES
+(1, 'friski', 'Jakarta', '081212312312', 'friskisatya@mail.com', '202cb962ac59075b964b07152d234b70', '1', 'Jakarta', 1, '', NULL, 0, '', '', '', '', 1),
+(2, 'friski', '', '82130327606', 'friskisatya5@gmail.com', '202cb962ac59075b964b07152d234b70', '1', '', 1, '', NULL, 0, '', '', '', '', 1),
+(4, 'friski', '', '82130327606', 'test@mail.com', '202cb962ac59075b964b07152d234b70', '1', '', 0, 'Jakata', '1998-06-08', 9, 'Khonghucu', 'S3', 'O', 'Karyawan', NULL),
+(16, '123', '', '123', 'friskisatya2@gmail.com', '202cb962ac59075b964b07152d234b70', '1', '', 0, '', NULL, 0, '', '', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -651,7 +653,7 @@ ALTER TABLE `t_klinik_fasilitas`
 -- AUTO_INCREMENT for table `t_login`
 --
 ALTER TABLE `t_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `t_riwayat_checkup`
