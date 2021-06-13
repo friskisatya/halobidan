@@ -34,11 +34,16 @@ class C_login extends CI_Controller {
 		if ($login == 0) 
 		{
 			$select = $this->db->query("SELECT * FROM t_login WHERE email = '$email' AND password = '$password'")->row_array();
-			$this->session->set_userdata("email",$email);
-			$this->session->set_userdata("nama",$select["nama"]);
-			$this->session->set_userdata("location",$select["location"]);
-			$this->session->set_userdata("status_admin",$select["status_admin"]);
-			redirect('C_index');
+			if($select['status_verif']!='1'){
+				$this->session->set_userdata("notif_login","<span class='login100-form-title-1'><font size='3px' color='#c80000'>Email Belum diverifikasi</font></span>");
+				redirect('C_login');
+			}else{
+				$this->session->set_userdata("email",$email);
+				$this->session->set_userdata("nama",$select["nama"]);
+				$this->session->set_userdata("location",$select["location"]);
+				$this->session->set_userdata("status_admin",$select["status_admin"]);
+				redirect('C_index');
+			}
 		}
 		else
 		{
@@ -80,7 +85,49 @@ class C_login extends CI_Controller {
 			$check = $this->db->query("SELECT * FROM t_login where email = '$email'");
 			if($check->num_rows()==0){
 				$this->db->insert('t_login', $data);
-				$this->session->set_userdata("notif_daftar","<span class='login100-form-title-1'><font size='3px' color='green'>Berhasil Daftar</font></span>");
+
+				$config = [
+					'mailtype'  => 'html',
+					'charset'   => 'utf-8',
+					'protocol'  => 'smtp',
+					'smtp_host' => 'smtp.gmail.com',
+					'smtp_user' => 'friskisatya5@gmail.com',  // Email gmail
+					'smtp_pass'   => base64_decode('MDYxMjE5OThudWdyYWhhZnJpc2tp'),  // Password gmail
+					'smtp_crypto' => 'ssl',
+					'smtp_port'   => 465,
+					'crlf'    => "\r\n",
+					'newline' => "\r\n"
+				];
+
+				// Load library email dan konfigurasinya
+				$this->load->library('email', $config);
+
+				// Email dan nama pengirim
+				$this->email->from('friskisatya5@gmail.com', 'HaloBidan');
+		
+				// Email penerima
+				$this->email->to($email); // Ganti dengan email tujuan
+		
+				// Lampiran email, isi dengan url/path file
+				// $this->email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
+		
+				// Subject email
+				$this->email->subject('Verifikasi Pendaftaran Halobidan');
+		
+				// Isi email
+				$id_verif = $this->db->query("SELECT * FROM t_login where email = '$email'")->result();
+				$url = base_url("C_login/verifikasi/").$id_verif[0]->id;
+				$this->email->message("Selamat Anda telah berhasil terdaftar dalam sistem halobidan silahkan klik link berikut untuk melakukan verfikasi.<br><br> Klik <strong><a href='$url' target='_blank' rel='noopener'>disini</a></strong> untuk verifikasi");
+				$send = $this->email->send();
+				//var_dump($this->email->print_debugger());die;
+				// Tampilkan pesan sukses atau error
+				// if ($this->email->send()) {
+				// 	echo 'Sukses! email berhasil dikirim.';
+				// } else {
+				// 	echo 'Error! email tidak dapat dikirim.';
+				// }
+
+				$this->session->set_userdata("notif_daftar","<span class='login100-form-title-1'><font size='3px' color='green'>Berhasil Daftar Silahkan Verifikasi email terlebih dahulu</font></span>");
 				redirect('C_login/daftar');
 			}
 			else{
@@ -93,6 +140,15 @@ class C_login extends CI_Controller {
 			$this->session->set_userdata("notif_daftar","<span class='login100-form-title-1'><font size='3px' color='#c80000'>Password Tidak Cocok</font></span>");
 			redirect('C_login/daftar');
 		}	
+	}
+
+	public function verifikasi($id)
+	{
+		$this->db->query("UPDATE t_login set status_verif = '1' where id = '$id'");
+
+		$this->session->set_userdata("notif_login","<span class='login100-form-title-1'><font size='3px' color='green'>Email kamu berhasil melakukan verifikasi silahkan login untuk masuk ke aplikasi</font></span>");
+		redirect('C_login');
+
 	}
 
 	public function logout()
